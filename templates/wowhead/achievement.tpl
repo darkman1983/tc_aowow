@@ -49,7 +49,7 @@
 				<div class="text">
 
 					<div id="h1-icon-generic" class="h1-icon"></div>
-					<a href="http://ru.wowhead.com/?{$query}" class="button-red" target="_blank" ><em><b><i>Wowhead</i></b><span>Wowhead</span></em></a>
+					<a href="http://www.wowhead.com/?{$query}" class="button-red"><em><b><i>Wowhead</i></b><span>Wowhead</span></em></a>
 					<h1 class="h1-icon">{$achievement.name}</h1>
 					<script type="text/javascript">
 					ge('h1-icon-generic').appendChild(Icon.create('{$achievement.iconname|escape:"javascript"}', 1));

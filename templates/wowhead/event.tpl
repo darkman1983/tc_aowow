@@ -24,7 +24,7 @@
 
 				<div class="text">
 					{if $event.holiday>0}
-						<a href="http://ru.wowhead.com/?event={$event.holiday}" class="button-red" target="_blank"><em><b><i>Wowhead</i></b><span>Wowhead</span></em></a>
+						<a href="http://www.wowhead.com/?event={$event.holiday}" class="button-red"><em><b><i>Wowhead</i></b><span>Wowhead</span></em></a>
 					{/if}
 					<h1>{$event.name|escape:"html"}</h1>
 

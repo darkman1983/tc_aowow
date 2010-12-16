@@ -3,7 +3,7 @@ require_once('includes/alllocales.php');
 
 // Для списка creatureinfo()
 $npc_cols[0] = array('name', 'subname', 'minlevel', 'maxlevel', 'type', 'rank', 'A','H');
-$npc_cols[1] = array('subname', 'minlevel', 'maxlevel', 'type', 'rank', 'minhealth', 'maxhealth', 'minmana', 'maxmana', 'mingold', 'maxgold', 'lootid', 'skinloot', 'pickpocketloot', 'spell1', 'spell2', 'spell3', 'spell4', 'A', 'H', 'mindmg', 'maxdmg', 'attackpower', 'dmg_multiplier', 'armor', 'difficulty_entry_1');
+$npc_cols[1] = array('subname', 'minlevel', 'maxlevel', 'type', 'rank', /*'minhealth', 'maxhealth', 'minmana', 'maxmana',*/ 'mingold', 'maxgold', 'lootid', 'skinloot', 'pickpocketloot', 'spell1', 'spell2', 'spell3', 'spell4', 'A', 'H', 'mindmg', 'maxdmg', 'attackpower', 'dmg_multiplier', /*'armor',*/ 'difficulty_entry_1');
 
 // Функция информации о создании
 function creatureinfo2($Row)
