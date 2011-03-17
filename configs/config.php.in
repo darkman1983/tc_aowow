@@ -2,11 +2,12 @@
 global $AoWoWconf;
 
 // -- MaNGOS Database --
-$AoWoWconf['mangos']['host']	= '127.0.0.1';
-$AoWoWconf['mangos']['user']	= 'mangos';
-$AoWoWconf['mangos']['pass']	= '';
-$AoWoWconf['mangos']['db']		= 'mangos';
-$AoWoWconf['mangos']['aowow']	= 'aowow_'; // AoWoW table prefix
+$AoWoWconf['mangos']['host']	 = '127.0.0.1';
+$AoWoWconf['mangos']['user']	 = 'mangos';
+$AoWoWconf['mangos']['pass']	 = '';
+$AoWoWconf['mangos']['db']		 = 'mangos';
+$AoWoWconf['mangos']['aowow']	 = 'aowow_'; // AoWoW table prefix
+$AoWoWconf['mangos']['aowow_db'] = 'aowow'; // AoWoW DB
 // -- Realmd Database --
 $AoWoWconf['realmd']['host']	= '127.0.0.1';
 $AoWoWconf['realmd']['user']	= 'mangos';

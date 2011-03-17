@@ -27,7 +27,7 @@
 
 			<div class="text">
 
-				<a href="http://ru.wowhead.com/?{$query}" class="button-red" target="_blank"><em><b><i>Wowhead</i></b><span>Wowhead</span></em></a>
+				<a href="http://www.wowhead.com/?{$query}" class="button-red"><em><b><i>Wowhead</i></b><span>Wowhead</span></em></a>
 				<h1>{$object.name}</h1>
 
 {if $object.position}

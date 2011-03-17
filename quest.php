@@ -203,7 +203,7 @@ if(!$quest = load_cache(QUEST_PAGE, $cache_key))
 
 	/*             НАГРАДЫ И ТРЕБОВАНИЯ             */
 
-	if($quest['RequiredSkillValue']>0 && $quest['SkillOrClass']>0)
+	if($quest['RequiredSkillValue']>0 && $quest['SkillOrClassMask']>0)
 	{
 		// Требуемый уровень скилла, что бы получить квест
 		/*
@@ -222,13 +222,20 @@ if(!$quest = load_cache(QUEST_PAGE, $cache_key))
 		
 		// TODO: skill localization
 		$quest['reqskill'] = array(
-			'name' => $DB->selectCell('SELECT name_loc'.$_SESSION['locale'].' FROM ?_skill WHERE skillID=?d LIMIT 1',$quest['SkillOrClass']),
+			'name' => $DB->selectCell('SELECT name_loc'.$_SESSION['locale'].' FROM ?_skill WHERE skillID=?d LIMIT 1',$quest['SkillOrClassMask']),
 			'value' => $quest['RequiredSkillValue']
 		);
 	}
-	elseif($quest['SkillOrClass']<0)
+	elseif($quest['SkillOrClassMask']<0)
+	{
+		$s = array();
+		foreach($classes as $i => $class)
+			if (intval(-$quest['SkillOrClassMask']) & (1<<$i))
+				$s[] = $class;
+		if (count($s) == 0) $s[] = "UNKNOWN";
 		// Требуемый класс, что бы получить квест
-		$quest['reqclass'] = $classes[abs($quest['SkillOrClass'])];
+		$quest['reqclass'] = implode(", ", $s);
+	}
 
 	// Требуемые отношения с фракциями, что бы начать квест
 	if($quest['RequiredMinRepFaction'])

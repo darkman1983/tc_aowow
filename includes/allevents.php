@@ -25,9 +25,9 @@ function event_find($conditions = NULL)
 	elseif (is_array($conditions) && count($conditions)==1 && (isset($conditions["quest_id"]) || isset($conditions["quest_creature_id"])))
 	{
 		if (isset($conditions["quest_id"]))
-			$rows = $DB->select('SELECT event, quest FROM game_event_quest WHERE quest=?d', $conditions["quest_id"]);
+			$rows = $DB->select('SELECT event, id, quest FROM game_event_creature_quest WHERE quest=?d', $conditions["quest_id"]);
 		else
-			$rows = $DB->select('SELECT event, quest FROM game_event_quest WHERE event=?d', $conditions["creature_guid"]);
+			$rows = $DB->select('SELECT event, id, quest FROM game_event_creature_quest WHERE id=?d', $conditions["quest_creature_id"]);
 		$result = array();
 		// This code is to make each event appear only once in array
 		if ($rows)
@@ -132,7 +132,7 @@ function event_description($entry)
 
 	$result['npcs_guid'] = $DB->selectCol('SELECT guid FROM game_event_creature WHERE event=?d OR event=?d', $entry, -$entry);
 	$result['objects_guid'] = $DB->selectCol('SELECT guid FROM game_event_gameobject WHERE event=?d OR event=?d', $entry, -$entry);
-	$result['creatures_quests_id'] = $DB->select('SELECT event, quest FROM game_event_quest WHERE event=?d OR event=?d GROUP BY quest', $entry, -$entry);
+	$result['creatures_quests_id'] = $DB->select('SELECT id AS creature, quest FROM game_event_creature_quest WHERE event=?d OR event=?d GROUP BY quest', $entry, -$entry);
 
 	return $result;
 }

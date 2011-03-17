@@ -740,76 +740,76 @@ var mn_achievements=[
 	[81,"Heldentaten"]
 ];
 var mn_talentCalc=[
-	[6,"Todesritter","/?talent#j"],
-	[11,"Druide","/?talent#0"],
-	[3,"Jäger","/?talent#c"],
-	[8,"Magier","/?talent#o"],
-	[2,"Paladin","/?talent#s"],
-	[5,"Priester","/?talent#b"],
-	[4,"Schurke","/?talent#f"],
-	[7,"Schamane","/?talent#h"],
-	[9,"Hexenmeister","/?talent#I"],
-	[1,"Krieger","/?talent#L"]
+	[6,"Todesritter","/loldb/?talent#j"],
+	[11,"Druide","/loldb/?talent#0"],
+	[3,"Jäger","/loldb/?talent#c"],
+	[8,"Magier","/loldb/?talent#o"],
+	[2,"Paladin","/loldb/?talent#s"],
+	[5,"Priester","/loldb/?talent#b"],
+	[4,"Schurke","/loldb/?talent#f"],
+	[7,"Schamane","/loldb/?talent#h"],
+	[9,"Hexenmeister","/loldb/?talent#I"],
+	[1,"Krieger","/loldb/?talent#L"]
 ];
 var mn_petCalc=[
-	[24,"Fledermaus","/?petcalc#MR"],
-	[4,"Bär","/?petcalc#0R"],
-	[26,"Raubvogel","/?petcalc#Mb"],
-	[5,"Eber","/?petcalc#0a"],
-	[7,"Aasvogel","/?petcalc#0r"],
-	[2,"Katze","/?petcalc#0m"],
-	[45,"Kernhund","/?petcalc#ma"],
-	[38,"Schimäre","/?petcalc#cw"],
-	[8,"Krebs","/?petcalc#0w"],
-	[6,"Krokilisk","/?petcalc#0b"],
-	[39,"Teufelssaurier","/?petcalc#ch"],
-	[30,"Drachenfalke","/?petcalc#c0"],
-	[9,"Gorilla","/?petcalc#0h"],
-	[25,"Hyäne","/?petcalc#Ma"],
-	[37,"Motte","/?petcalc#cr"],
-	[34,"Netherrochen","/?petcalc#cR"],
-	[11,"Raptor","/?petcalc#zM"],
-	[31,"Felshetzer","/?petcalc#cM"],
-	[43,"Rhinozeros","/?petcalc#mo"],
-	[20,"Skorpid","/?petcalc#M0"],
-	[35,"Schlange","/?petcalc#ca"],
-	[41,"Silithid","/?petcalc#mM"],
-	[3,"Spinne","/?petcalc#0o"],
-	[46,"Geisterbestie","/?petcalc#mb"],
-	[33,"Sporensegler","/?petcalc#co"],
-	[12,"Weitschreiter","/?petcalc#zm"],
-	[21,"Schildkröte","/?petcalc#MM"],
-	[32,"Sphärenjäger","/?petcalc#cm"],
-	[44,"Wespe","/?petcalc#mR"],
-	[27,"Windnatter","/?petcalc#Mr"],
-	[1,"Wolf","/?petcalc#0M"],
-	[42,"Wurm","/?petcalc#mm"]
+	[24,"Fledermaus","/loldb/?petcalc#MR"],
+	[4,"Bär","/loldb/?petcalc#0R"],
+	[26,"Raubvogel","/loldb/?petcalc#Mb"],
+	[5,"Eber","/loldb/?petcalc#0a"],
+	[7,"Aasvogel","/loldb/?petcalc#0r"],
+	[2,"Katze","/loldb/?petcalc#0m"],
+	[45,"Kernhund","/loldb/?petcalc#ma"],
+	[38,"Schimäre","/loldb/?petcalc#cw"],
+	[8,"Krebs","/loldb/?petcalc#0w"],
+	[6,"Krokilisk","/loldb/?petcalc#0b"],
+	[39,"Teufelssaurier","/loldb/?petcalc#ch"],
+	[30,"Drachenfalke","/loldb/?petcalc#c0"],
+	[9,"Gorilla","/loldb/?petcalc#0h"],
+	[25,"Hyäne","/loldb/?petcalc#Ma"],
+	[37,"Motte","/loldb/?petcalc#cr"],
+	[34,"Netherrochen","/loldb/?petcalc#cR"],
+	[11,"Raptor","/loldb/?petcalc#zM"],
+	[31,"Felshetzer","/loldb/?petcalc#cM"],
+	[43,"Rhinozeros","/loldb/?petcalc#mo"],
+	[20,"Skorpid","/loldb/?petcalc#M0"],
+	[35,"Schlange","/loldb/?petcalc#ca"],
+	[41,"Silithid","/loldb/?petcalc#mM"],
+	[3,"Spinne","/loldb/?petcalc#0o"],
+	[46,"Geisterbestie","/loldb/?petcalc#mb"],
+	[33,"Sporensegler","/loldb/?petcalc#co"],
+	[12,"Weitschreiter","/loldb/?petcalc#zm"],
+	[21,"Schildkröte","/loldb/?petcalc#MM"],
+	[32,"Sphärenjäger","/loldb/?petcalc#cm"],
+	[44,"Wespe","/loldb/?petcalc#mR"],
+	[27,"Windnatter","/loldb/?petcalc#Mr"],
+	[1,"Wolf","/loldb/?petcalc#0M"],
+	[42,"Wurm","/loldb/?petcalc#mm"]
 ];
 var mn_holidays=[
-	[1,"Feiertage","/?events=1"],
-	[2,"Wiederkehrend","/?events=2"],
-	[3,"Spieler vs. Spieler","/?events=3"]
+	[1,"Feiertage","/loldb/?events=1"],
+	[2,"Wiederkehrend","/loldb/?events=2"],
+	[3,"Spieler vs. Spieler","/loldb/?events=3"]
 ];
 var mn_database=[
-	[0,"Gegenstände","/?items",mn_items],
-	[2,"Sets","/?itemsets"/*,mn_itemSets*/],
-	[4,"NPCs","/?npcs",mn_npcs],
-	[3,"Quests","/?quests",mn_quests],
+	[0,"Gegenstände","/loldb/?items",mn_items],
+	[2,"Sets","/loldb/?itemsets"/*,mn_itemSets*/],
+	[4,"NPCs","/loldb/?npcs",mn_npcs],
+	[3,"Quests","/loldb/?quests",mn_quests],
 	//[6,"Gebiete","/?zones",mn_zones],
-	[1,"Zauber","/?spells",mn_spells],
-	[9,"Erfolge","/?achievements",mn_achievements],
-	[5,"Objekte","/?objects",mn_objects],
-	[7,"Fraktionen","/?factions",mn_factions],
+	[1,"Zauber","/loldb/?spells",mn_spells],
+	[9,"Erfolge","/loldb/?achievements",mn_achievements],
+	[5,"Objekte","/loldb/?objects",mn_objects],
+	[7,"Fraktionen","/loldb/?factions",mn_factions],
 	//[10,"Titel","/?titles",mn_titles],
 	//[8,"Begleiter","/?pets",mn_pets],
-	[11,"Weltereignisse","/?events"/*,mn_holidays*/]
+	[11,"Weltereignisse","/loldb/?events"/*,mn_holidays*/]
 ];
 var mn_tools=[
-	[0,"Talentrechner","/?talent",mn_talentCalc],
+	[0,"Talentrechner","/loldb/?talent",mn_talentCalc],
 	//[2,"Begleiterrechner","/?petcalc",mn_petCalc],
 	//[5,"Profiler","/?profiles"],
 	//[3,"Gegenstandsvergleich","/?compare"],
-	[1,"Karten","/?maps"],
+	[1,"Karten","/loldb/?maps"],
 	/*[,"Anderes"],
 	[6,"Guides","",[
 		[,"Expansions"],
@@ -859,7 +859,7 @@ var mn_tools=[
 		[7,"Neueste Themen","/?latest-topics"],
 		[8,"Unbeantwortete Themen","/?unanswered-topics"]
 	]]*/
-	[30,"Neueste Kommentare","/?latest=comments"]
+	[30,"Neueste Kommentare","/loldb/?latest=comments"]
 ];
 var mn_forums=[
 	[0,"WoW Allgemein"],
@@ -888,36 +888,36 @@ var mn_forums=[
 	[1,"Rückmeldungen zu Wowhead"]
 ];
 var mn_community=[
-	[3,"Foren","/?forums",mn_forums],
-	[7,"Blog","/?blog"],
-	[1,"Wettbewerbe","/?contests"],
-	[4,"IRC-Channel","/?irc"],
+	[3,"Foren","/loldb/?forums",mn_forums],
+	[7,"Blog","/loldb/?blog"],
+	[1,"Wettbewerbe","/loldb/?contests"],
+	[4,"IRC-Channel","/loldb/?irc"],
 	[,"Soziales"],
 	[6,"Facebook Page","http://facebook.com/Wowhead"],
 	[5,"Twitter Page","http://twitter.com/Wowhead"]
 ];mn_community[5].otherImage=["http://static.wowhead.com/images/blog/share/services.gif","-32"];mn_community[6].otherImage=["http://static.wowhead.com/images/blog/share/services.gif","-128"];
 var mn_more=[
 	[,"Alles über Wowhead"],
-	[0,"Über uns & Kontakt","/?aboutus"],
-	[3,"FAQ","/?faq"],
+	[0,"Über uns & Kontakt","/loldb/?aboutus"],
+	[3,"FAQ","/loldb/?faq"],
 	[13,"Hilfe",,[
-		[0,"Kommentare und du","/?help=commenting-and-you"],
-		[5,"Gegenstandsvergleich","/?help=item-comparison"],
-		[1,"Modellviewer","/?help=modelviewer"],
-		[6,"Profiler","/?help=profiler"],
-		[2,"Screenshots: Tipps & Tricks","/?help=screenshots-tips-tricks"],
-		[3,"Gewichtung von Werten","/?help=stat-weighting"],
-		[4,"Talentrechner","/?help=talent-calculator"]
+		[0,"Kommentare und du","/loldb/?help=commenting-and-you"],
+		[5,"Gegenstandsvergleich","/loldb/?help=item-comparison"],
+		[1,"Modellviewer","/loldb/?help=modelviewer"],
+		[6,"Profiler","/loldb/?help=profiler"],
+		[2,"Screenshots: Tipps & Tricks","/loldb/?help=screenshots-tips-tricks"],
+		[3,"Gewichtung von Werten","/loldb/?help=stat-weighting"],
+		[4,"Talentrechner","/loldb/?help=talent-calculator"]
 	]],
-	[12,"Jobs","/?jobs"],
-	[4,"Premium","/?premium"],
-	[7,"Was gibt's Neues?","/?whats-new"],
-	[2,"Wowhead-Client","/?client"],
+	[12,"Jobs","/loldb/?jobs"],
+	[4,"Premium","/loldb/?premium"],
+	[7,"Was gibt's Neues?","/loldb/?whats-new"],
+	[2,"Wowhead-Client","/loldb/?client"],
 	[4,"Wowhead Store","http://store.wowhead.com/"],
 	[,"Tolle Sachen"],
-	[10,"Unterstützt von Wowhead","/?powered"],
-	[8,"Such-Plugins","/?searchplugins"],
-	[9,"Wowhead weiterempfehlen","/?spread"],
+	[10,"Unterstützt von Wowhead","/loldb/?powered"],
+	[8,"Such-Plugins","/loldb/?searchplugins"],
+	[9,"Wowhead weiterempfehlen","/loldb/?spread"],
 	[,"Noch mehr"],
 	[5,"Seiten im Netzwerk",,[
 		[99,"ZAM","http://www.zam.com/",[

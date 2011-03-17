@@ -28,8 +28,15 @@ if(!$npc = load_cache(NPC_PAGE, $cache_key))
 				l.subname_loc'.$_SESSION['locale'].' as `subname_loc`,
 				?,
 			}
-			f.name_loc'.$_SESSION['locale'].' as `faction-name`, ft.factionID as `factionID`
+			f.name_loc'.$_SESSION['locale'].' as `faction-name`, ft.factionID as `factionID`,
+			((CASE exp WHEN 0 THEN mincls.basehp0 WHEN 1 THEN mincls.basehp1 WHEN 2 THEN mincls.basehp2 END)*Health_mod) AS minhealth,
+			((CASE exp WHEN 0 THEN maxcls.basehp0 WHEN 1 THEN maxcls.basehp1 WHEN 2 THEN maxcls.basehp2 END)*Health_mod) AS maxhealth,
+			(mincls.basemana*Mana_mod) AS minmana,
+			(maxcls.basemana*Mana_mod) AS maxmana,
+			(maxcls.basearmor*Armor_mod) AS armor
 		FROM ?_factiontemplate ft, ?_factions f, creature_template c
+		LEFT JOIN creature_classlevelstats mincls ON mincls.level=minlevel AND mincls.class=unit_class
+		LEFT JOIN creature_classlevelstats maxcls ON maxcls.level=maxlevel AND maxcls.class=unit_class
 		{
 			LEFT JOIN (locales_creature l)
 			ON l.entry = c.entry AND ?
