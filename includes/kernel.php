@@ -14,13 +14,13 @@ function CheckPwd($username, $shapass)
 	require_once('includes/DbSimple/Generic.php');
 	global $rDB;
 	global $AoWoWconf;
-	$user_row = $rDB->selectRow('SELECT id, LOWER(sha_pass_hash) AS sha_pass_hash, gmlevel FROM account WHERE username=? LIMIT 1', $username);
+	$user_row = $rDB->selectRow('SELECT id as uid, LOWER(sha_pass_hash) AS sha_pass_hash, (SELECT gmlevel FROM account_access WHERE id = uid) FROM account WHERE username=? LIMIT 1', $username);
 	if($user_row)
 	{
 		if($shapass == $user_row['sha_pass_hash'])
 		{
 			$user = array();
-			$user['id'] = $user_row['id'];
+			$user['id'] = $user_row['uid'];
 			$user['name'] = $username;
 			$user['roles'] = ($user_row['gmlevel']>0)? 2: 0;
 			/*

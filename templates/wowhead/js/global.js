@@ -5162,9 +5162,9 @@ Listview.funcBox = {
 			}
 			Listview.funcBox.coFormatDate(b.childNodes[3], d, c);
 			var a = "";
-			if (f.rating != null) {
+			/*if (f.rating != null) {
 				a += LANG.lvcomment_patch1 + g_getPatchVersion(c) + LANG.lvcomment_patch2
-			}
+			}*/
 			if (e[1] > 1) {
 				a += LANG.dash + sprintf(LANG.lvcomment_nedits, e[1])
 			}
@@ -7024,7 +7024,7 @@ Listview.templates = {
 			Listview.funcBox.coFormatDate(a, F, s);
 			a.style.cursor = "pointer";
 			ae(w, a);
-			ae(w, ct(LANG.lvcomment_patch1 + g_getPatchVersion(s) + LANG.lvcomment_patch2));
+			//ae(w, ct(LANG.lvcomment_patch1 + g_getPatchVersion(s) + LANG.lvcomment_patch2));
 			ae(H, w);
 			m.className = "comment-body" + Listview.funcBox.coGetColor(t);
 			if (t.indent) {

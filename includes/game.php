@@ -626,7 +626,7 @@ function position($id, $type, $spawnMask = 0)
 		{
 			$wps = $DB->select('
 					SELECT c.map AS m, m.position_x AS x, m.position_y AS y, "3" AS `type`
-					FROM creature_movement m, creature c
+					FROM waypoint_data m, creature c
 					WHERE
 						m.id = c.guid
 						AND m.id IN (?a)
