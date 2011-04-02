@@ -16,8 +16,8 @@ if(!$npcs = load_cache(NPC_LISTING, $cache_key))
 	$rows = $DB->select('
 		SELECT c.?#, c.entry
 		{
-			, l.name_loc?d AS name_loc
-			, l.subname_loc?d AS subname_loc
+			, l.name_loc?d 
+			, l.subname_loc?d 
 		}
 		FROM ?_factiontemplate, creature_template c
 		{ LEFT JOIN (locales_creature l) ON l.entry=c.entry AND ? }
@@ -31,7 +31,7 @@ if(!$npcs = load_cache(NPC_LISTING, $cache_key))
 		($_SESSION['locale']>0)? $_SESSION['locale']: DBSIMPLE_SKIP,
 		($_SESSION['locale']>0)? $_SESSION['locale']: DBSIMPLE_SKIP,
 		($_SESSION['locale']>0)? 1: DBSIMPLE_SKIP,
-		isset($type) ? $type : DBSIMPLE_SKIP,
+		($type!='')? $type: DBSIMPLE_SKIP,
 		($AoWoWconf['limit']!=0)? $AoWoWconf['limit']: DBSIMPLE_SKIP
 	);
 

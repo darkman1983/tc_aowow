@@ -130,9 +130,9 @@ function event_description($entry)
 
 	$result['period'] = sec_to_time(intval($result['occurence'])*60);
 
-	$result['npcs_guid'] = $DB->selectCol('SELECT guid FROM game_event_creature WHERE event=?d OR event=?d', $entry, -$entry);
-	$result['objects_guid'] = $DB->selectCol('SELECT guid FROM game_event_gameobject WHERE event=?d OR event=?d', $entry, -$entry);
-	$result['creatures_quests_id'] = $DB->select('SELECT id AS creature, quest FROM game_event_creature_quest WHERE event=?d OR event=?d GROUP BY quest', $entry, -$entry);
+	$result['npcs_guid'] = $DB->selectCol('SELECT guid FROM game_event_creature WHERE eventEntry=?d OR eventEntry=?d', $entry, -$entry);
+	$result['objects_guid'] = $DB->selectCol('SELECT guid FROM game_event_gameobject WHERE eventEntry=?d OR eventEntry=?d', $entry, -$entry);
+	$result['creatures_quests_id'] = $DB->select('SELECT id AS creature, quest FROM game_event_creature_quest WHERE eventEntry=?d OR eventEntry=?d GROUP BY quest', $entry, -$entry);
 
 	return $result;
 }

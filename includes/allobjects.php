@@ -10,6 +10,7 @@
 * 
 * allobjects.php - All functions, constants, etc, which deals with game objects
 */
+require_once ( 'includes/allquests.php' );
 
 // Types of Game Objects
 define('GAMEOBJECT_TYPE_DOOR', 0);
@@ -475,6 +476,38 @@ function objectinfo2(&$Row, $level=0)
 				unset($object['drop']);
 		}
 	}
+    
+    switch ( $object ['type'] )
+    {
+        case 9:
+            $type = "Buch";
+            break;
+        case 3:
+            $type = "Behälter";
+            break;
+        case "-5":
+            $type = "Schließkiste";
+            break;
+        case "-3":
+            $type = "Kräuter";
+            break;
+        case "-4":
+            $type = "Erzvorkommen";
+            break;
+        case "-2":
+            $type = "Quest";
+            break;
+        default:
+            $type = '';
+            break;
+    }
+	
+	$x = '';
+    $x .= "<table><tr><td><b class=\"q\">{$object['name']}</b></td></tr></table><table><tr><td>";
+	$x .= "{$type}";
+    $x .= "</td></tr></table>";
+    
+    $object ['tooltip'] = $x;
 	return $object;
 }
 
