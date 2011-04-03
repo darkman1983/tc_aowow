@@ -22,19 +22,19 @@ switch($_GET['latest'])
 			switch($row['type'])
 			{
 				case 1: // NPC
-					$comments[$i]['subject'] = $DB->selectCell('SELECT name FROM creature_template WHERE entry=?d LIMIT 1', $row['typeID']);
+					$comments[$i]['subject'] = $DB->selectCell('SELECT name_loc'.$_SESSION['locale'].' FROM locales_creature WHERE entry=?d LIMIT 1', $row['typeID']);
 					break;
 				case 2: // GO
-					$comments[$i]['subject'] = $DB->selectCell('SELECT name FROM gameobject_template WHERE entry=?d LIMIT 1', $row['typeID']);
+					$comments[$i]['subject'] = $DB->selectCell('SELECT name_loc'.$_SESSION['locale'].' FROM locales_gameobject WHERE entry=?d LIMIT 1', $row['typeID']);
 					break;
 				case 3: // Item
-					$comments[$i]['subject'] = $DB->selectCell('SELECT name FROM item_template WHERE entry=?d LIMIT 1', $row['typeID']);
+					$comments[$i]['subject'] = $DB->selectCell('SELECT name_loc'.$_SESSION['locale'].' FROM locales_item WHERE entry=?d LIMIT 1', $row['typeID']);
 					break;
 				case 4: // Item Set
 					$comments[$i]['subject'] = $DB->selectCell('SELECT name_loc'.$_SESSION['locale'].' FROM ?_itemset WHERE itemsetID=?d LIMIT 1', $row['typeID']);
 					break;
 				case 5: // Quest
-					$comments[$i]['subject'] = $DB->selectCell('SELECT Title FROM quest_template WHERE entry=?d LIMIT 1', $row['typeID']);
+					$comments[$i]['subject'] = $DB->selectCell('SELECT Title_loc'.$_SESSION['locale'].' FROM locales_quest WHERE entry=?d LIMIT 1', $row['typeID']);
 					break;
 				case 6: // Spell
 					$comments[$i]['subject'] = $DB->selectCell('SELECT spellname_loc'.$_SESSION['locale'].' FROM ?_spell WHERE spellID=?d LIMIT 1', $row['typeID']);

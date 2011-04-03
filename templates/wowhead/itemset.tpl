@@ -24,18 +24,18 @@
 					<a href="http://www.wowhead.com/?{$query}" class="button-red"><em><b><i>Wowhead</i></b><span>Wowhead</span></em></a>
 					<h1>{$itemset.name}</h1>
 					{$itemset.article}
-					{$itemset.name} - состоит из {$itemset.count} предметов:
+					<b>{$itemset.name}</b> {#Itemset_Contains#} {$itemset.count} {#Pieces#} {#Contains_small#}:
 					<table class="iconlist">
 						{section name=i loop=$itemset.pieces}<tr><th align="right" id="iconlist-icon{$smarty.section.i.index+1}"></th><td><span class="q{$itemset.pieces[i].quality}"><a href="?item={$itemset.pieces[i].entry}">{$itemset.pieces[i].name}</a></span></td></tr>{/section} 
 					</table>
 					<script type="text/javascript">
 						{section name=i loop=$itemset.pieces}ge('iconlist-icon{$smarty.section.i.index+1}').appendChild(g_items.createIcon({$itemset.pieces[i].entry}, 0, 0));{/section}
 					</script>
-					<h3>Бонус за комплект</h3>
+					<h3>{#Setboni#}</h3>
 
-					Ношение большего числа предметов из этого комплекта предоставит бонусы для вашего персонажа.
+					{#Setboni_txt#}
 					<ul>
-						{section name=i loop=$itemset.spells}<li><div>{$itemset.spells[i].bonus} частей: <a href="?spell={$itemset.spells[i].entry}">{$itemset.spells[i].tooltip}</a></div></li>{/section}
+						{section name=i loop=$itemset.spells}<li><div>{$itemset.spells[i].bonus} {#Pieces#}: <a href="?spell={$itemset.spells[i].entry}">{$itemset.spells[i].tooltip}</a></div></li>{/section}
 					</ul>
 
 				<h2>{#Related#}</h2>

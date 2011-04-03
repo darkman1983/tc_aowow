@@ -485,16 +485,16 @@ function objectinfo2(&$Row, $level=0)
         case 3:
             $type = "Behälter";
             break;
-        case "-5":
+        case 5:
             $type = "Schließkiste";
             break;
-        case "-3":
+        case 3:
             $type = "Kräuter";
             break;
-        case "-4":
+        case 4:
             $type = "Erzvorkommen";
             break;
-        case "-2":
+        case 2:
             $type = "Quest";
             break;
         default:

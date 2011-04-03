@@ -2111,6 +2111,9 @@ var g_socket_names={
 	14:"Prismatischer Sockel"
 };
 var LANG={
+	book_previous:"Zurück",
+	book_next:"Weiter",
+	book_of:" von ",
 	comma:", ",
 	ellipsis:"...",
 	dash:" \u2013 ",
