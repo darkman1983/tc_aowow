@@ -218,11 +218,15 @@ if(!$npc = load_cache(NPC_PAGE, $cache_key))
 			SELECT ?#, spellID
 			FROM npc_trainer, ?_spell, ?_spellicons
 			WHERE
-				entry=?d
-				AND spellID=Spell
-				AND id=spellicon
+			(
+			-entry IN (SELECT spell FROM npc_trainer WHERE entry = ?)
+			OR (entry = ? AND npc_trainer.spell > 0)
+			)
+			AND spellID = npc_trainer.spell
+			AND id=spellicon
 			',
 			$spell_cols[2],
+			$npc['entry'],
 			$npc['entry']
 		);
 		if($teachspells)

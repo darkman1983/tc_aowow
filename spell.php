@@ -70,7 +70,7 @@ if(!$spell = load_cache(SPELL_PAGE, $cache_key))
 		else if($row['ChannelInterruptFlags'])
 			$spell['casttime'] = 'Channeled';
 		else
-			$spell['casttime'] = 'Instant';
+			$spell['casttime'] = 'Sofort';
 		// Cooldown
 		if($row['cooldown'] > 0)
 			$spell['cooldown'] = $row['cooldown'] / 1000;

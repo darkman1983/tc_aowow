@@ -24,9 +24,11 @@
 		
 		<div class="pad"></div>
 
-		<form method="get" action="." onsubmit="if(trim(this.elements[0].value) == '') return false">
-			<input type="text" name="search" size="38" id="kghjklvhj43v6" /><input type="submit" value="{#search#}" />
-		</form>
+		<div class="home-search" id="home-search">
+		<form name="searchform" method="get" action="." onsubmit="if(trim(this.elements[0].value) == '') return false">
+			<input name="search" type="text" id="kghjklvhj43v6" />
+		<a href="javascript:;" onclick="document.searchform.submit();"></a></form>
+		</div>
 		
 		<script type="text/javascript">var _ = ge('kghjklvhj43v6'); LiveSearch.attach(_); _.focus();</script>
 
