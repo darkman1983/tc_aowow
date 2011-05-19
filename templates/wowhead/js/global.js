@@ -4611,14 +4611,14 @@ Listview.funcBox = {
 		return null
 	},
 	coReport: function (c, d, f) {
-		if (!g_user.id || !g_report_reasons[f]) {
+		if (!g_user.id || !g_contact_reasons[f]) {
 			return
 		}
 		var a = "";
 		if (f == 4) {
 			a = prompt(LANG.prompt_details, "")
 		} else {
-			if (!confirm(sprintf((c == 0 ? LANG.confirm_report: LANG.confirm_report2), g_report_reasons[f]))) {
+			if (!confirm(sprintf((c == 0 ? LANG.confirm_report: LANG.confirm_report2), g_contact_reasons[f]))) {
 				return
 			}
 		}
@@ -4634,9 +4634,9 @@ Listview.funcBox = {
 		}
 	},
 	coReportClick: function (b, a, c) {
-		this.menu = [[2, g_report_reasons[2], Listview.funcBox.coReport.bind(this, a, b, 2)], [1, g_report_reasons[1], Listview.funcBox.coReport.bind(this, a, b, 1)], [3, g_report_reasons[3], Listview.funcBox.coReport.bind(this, a, b, 3)], [4, g_report_reasons[4], Listview.funcBox.coReport.bind(this, a, b, 4)]];
+		this.menu = [[2, g_contact_reasons[2], Listview.funcBox.coReport.bind(this, a, b, 2)], [1, g_contact_reasons[1], Listview.funcBox.coReport.bind(this, a, b, 1)], [3, g_contact_reasons[3], Listview.funcBox.coReport.bind(this, a, b, 3)], [4, g_contact_reasons[4], Listview.funcBox.coReport.bind(this, a, b, 4)]];
 		if (a == 1 && b.op && typeof g_pageInfo != "undefined" && !g_pageInfo.sticky) {
-			this.menu.splice(3, 0, [0, g_report_reasons[0], Listview.funcBox.coReport.bind(this, a, b, 0)])
+			this.menu.splice(3, 0, [0, g_contact_reasons[0], Listview.funcBox.coReport.bind(this, a, b, 0)])
 		} (Menu.showAtCursor.bind(this, c))()
 	},
 	coGetColor: function (c, a) {
@@ -5105,9 +5105,9 @@ Listview.funcBox = {
 	},
 	coReply: function (b) {
 		document.forms.addcomment.elements.replyto.value = b.replyTo;
-		var a = ge("gjkdlfgkjh436");
+		/*var a = ge(b.id);
 		gE(a, "span")[0].innerHTML = b.user;
-		a.style.display = "";
+		a.style.display = "";*/
 		co_addYourComment()
 	},
 	coValidate: function (a, c) {
@@ -8443,12 +8443,12 @@ function () {
 		S = 2;
 		Q = 3;
 
-		if (aa.href.indexOf("http://") == 0) {
+		/*if (aa.href.indexOf("http://") == 0) {
 			T = 1;
-			P = aa.href.match(/http:\/\/(.+?)?\.?landoflegends\.de\/loldb\/\?(item|quest|spell|achievement|npc|object|profile)=([^&#]+)/)
-		} else {
+			P = aa.href.match(/http:\/\/(.+?)?\.?landoflegends\.de\/\?(item|quest|spell|achievement|npc|object|profile)=([^&#]+)/)*/
+		//} else {
 			P = aa.href.match(/()\?(item|quest|spell|achievement|npc|object|profile)=([^&#]+)/)
-		}
+		//}
 		
 		// P =
 		// aa.href.match(/()\?(item|quest|spell|achievement|npc|object|profile)=([^&#]+)/)
@@ -8594,7 +8594,7 @@ function () {
 		 * g_getDomainFromLocale(X) + ".wowhead.com" } } P += "?" + p[W][1] +
 		 * "=" + S + "&power" + R;
 		 */
-		var P = "ajax.php?" + p[W][1] + "=" + S + "&power" + R;
+		var P = "http://loldb.landoflegends.de/ajax.php?" + p[W][1] + "=" + S + "&power" + R;
 		g_ajaxIshRequest(P)
 	}
 	function N(R, S) {

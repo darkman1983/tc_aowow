@@ -23,7 +23,7 @@ myTabs.flush();
 	{else}
 		<div class="text">
 			<a href="http://www.wowhead.com/?{$query}" class="button-red"><em><b><i>Wowhead</i></b><span>Wowhead</span></em></a>
-			<h1>{#No_results_for#} <i>{$search|escape:"html"}</i></h1>
+			{if $search|escape:"html" == ''}<h1>{#No_results_empty#}</h1>{else}<h1>{#No_results_for#} <i>{$search|escape:"html"}</i></h1>{/if}
 
 			{#Please_try_some_different_keywords_or_check_your_spelling#}
 		</div>

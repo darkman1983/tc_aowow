@@ -27,6 +27,8 @@ global $spell_cols;
 // Массив всего найденного
 $found = array();
 
+if (!empty($podrazdel))
+{
 // Ищем вещи:
 if($_SESSION['locale']>0)
 {
@@ -176,6 +178,7 @@ $rows = $DB->select('
 );
 foreach($rows as $row)
 	$found['spell'][] = spellinfo2($row);
+}
 
 $keys = array_keys($found);
 
