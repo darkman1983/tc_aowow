@@ -888,19 +888,17 @@ var mn_forums=[
 	[1,"Rückmeldungen zu Wowhead"]
 ];
 var mn_community=[
-	[3,"Foren","?forums",mn_forums],
-	[7,"Blog","?blog"],
-	[1,"Wettbewerbe","?contests"],
-	[4,"IRC-Channel","?irc"],
+	[1,"Portal","http://www.landoflegends.de/portal.php"],
+	[2,"Forum","http://www.landoflegends.de/index.php"],
 	[,"Soziales"],
-	[6,"Facebook Page","http://facebook.com/Wowhead"],
-	[5,"Twitter Page","http://twitter.com/Wowhead"]
-];mn_community[5].otherImage=["http://static.wowhead.com/images/blog/share/services.gif","-32"];mn_community[6].otherImage=["http://static.wowhead.com/images/blog/share/services.gif","-128"];
+	[3,"Facebook Seite","http://www.facebook.com/Landoflegendswow?ref=ts"],
+	[4,"Twitter Seite","http://twitter.com/#!/landoflegends"]
+];mn_community[3].otherImage=["http://static.wowhead.com/images/icons/facebook.gif","-32"];mn_community[4].otherImage=["http://static.wowhead.com/images/icons/twitter.gif","-128"];
 var mn_more=[
-	[,"Alles über Wowhead"],
-	[0,"Über uns & Kontakt","?aboutus"],
-	[3,"FAQ","?faq"],
-	[13,"Hilfe",,[
+	[,"LoL Projekte"],
+	[0,"Arsenal","http://arsenal.landoflegends.de"],
+	[3,"Bugs Melden","http://bugs.landoflegends.de"]
+	/*[13,"Hilfe",,[
 		[0,"Kommentare und du","?help=commenting-and-you"],
 		[5,"Gegenstandsvergleich","?help=item-comparison"],
 		[1,"Modellviewer","?help=modelviewer"],
@@ -946,13 +944,13 @@ var mn_more=[
 		]],
 		[99,"Online Gaming Radio","http://www.onlinegamingradio.com/"],
 		[99,"Thottbot","http://www.thottbot.com/"]
-	]]
+	]]*/
 ];
 var mn_path=[
 	[0,"Datenbank",,mn_database],
 	[1,"Extras",,mn_tools],
-	//[3,"Community",,mn_community],
-	//[2,"Weiteres",,mn_more]
+	[3,"Community",,mn_community],
+	[2,"Weiteres",,mn_more]
 ];
 var g_contact_reasons={
 	1:"Allgemeine Rückmeldungen",

@@ -10,7 +10,7 @@
 			<div id="lv-items" class="listview"></div>
 
 			<script type="text/javascript">
-				{include		file='bricks/item_table.tpl' id='items'	data=$items}
+				{include		file='bricks/item_table.tpl' id='items'	data=$items num_item=$item_tot}
 			</script>
 
 			<div class="clear"></div>

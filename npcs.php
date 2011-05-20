@@ -41,6 +41,19 @@ if(!$npcs = load_cache(NPC_LISTING, $cache_key))
 	save_cache(NPC_LISTING, $cache_key, $npcs);
 }
 
+if(!$npc_tot = load_cache(NPC_TOT, 'npc_tot'))
+{
+	unset($npc_tot);
+
+	$npc_tot = $DB->select('
+		SELECT COUNT(entry) as npc_tot
+		FROM creature_template c
+		'
+	);
+	
+	save_cache(NPC_TOT, 'npc_tot', $npc_tot);
+}
+
 global $page;
 $page = array(
 	'Mapper' => false,
@@ -54,6 +67,7 @@ $page = array(
 $smarty->assign('page', $page);
 
 $smarty->assign('npcs', $npcs);
+$smarty->assign('npc_tot',(is_array($npc_tot) ? $npc_tot[0]['npc_tot'] : $npc_tot));
 // Количество MySQL запросов
 $smarty->assign('mysql', $DB->getStatistics());
 // Загружаем страницу

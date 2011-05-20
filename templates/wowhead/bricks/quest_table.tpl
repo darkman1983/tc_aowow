@@ -2,6 +2,7 @@
 	new Listview({ldelim}
 		template:'quest',
 		id:'{$id}',
+		note:'{$num_quest} {#Quest_Found#}',
 		{if isset($name)}name:LANG.tab_{$name},{/if}
 		{if isset($tabsid)}tabs:{$tabsid},parent:'listview-generic',{/if}
 		data:[

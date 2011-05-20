@@ -138,13 +138,20 @@ if($_SESSION['locale']>0)
 		$_SESSION['locale'], $nsearch
 	);
 }
-$rows = $DB->select('
+$rows = $DB->select("
 		SELECT *
 			{, l.Title_loc?d AS `Title_loc`}
 		FROM quest_template q
 			{LEFT JOIN (locales_quest l) ON l.entry=q.entry AND ?d}
 		WHERE Title LIKE ? {OR q.entry IN (?a)}
-	',
+		AND q.Title NOT IN ('','----','?????')
+		AND q.Title NOT LIKE '<DEPRECATED>%'
+		AND q.Title NOT LIKE '<NYI>%'
+		AND q.Title NOT LIKE '<nyi>%'
+		AND q.Title NOT LIKE '<TEST>%'
+		AND q.Title NOT LIKE '<TXT>%'
+		AND q.Title NOT LIKE '<UNUSED%'
+	",
 	($m)? $_SESSION['locale']: DBSIMPLE_SKIP,
 	($m)? 1: DBSIMPLE_SKIP,
 	$nsearch,

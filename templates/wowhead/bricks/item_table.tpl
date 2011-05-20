@@ -19,6 +19,7 @@
 new Listview(
 	{ldelim}template:'item',
 	id:'{$id}',
+	note:'{$num_item} {#Item_Found#}',
 	{if (isset($name))}name:LANG.tab_{$name},{/if}
 	{if (isset($tabsid))}tabs:{$tabsid},parent:'listview-generic',{/if}
 	extraCols:[

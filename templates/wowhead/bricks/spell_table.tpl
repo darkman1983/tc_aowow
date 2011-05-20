@@ -13,6 +13,7 @@
 	new Listview({ldelim}
 		template:'spell',
 		id:'{$id}',
+		note:'{#Spell_Found#}',
 		{if isset($name)}name:LANG.tab_{$name},{/if}
 		visibleCols:[{if $level}'level'{/if}],
 		hiddenCols:[{if !$reagents}'reagents',{/if}{if !$skill}'skill',{/if}'school'],

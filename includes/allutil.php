@@ -444,6 +444,7 @@ $cache_types = array(
 
 	array('object_page',		false			),
 	array('object_listing',		false			),
+	array('object_tot',		    false			),
 
 	array('item_page',			false			),
 	array('item_tooltip',		false			),
@@ -455,6 +456,7 @@ $cache_types = array(
 	array('quest_page',			false			),
 	array('quest_tooltip',		false			),
 	array('quest_listing',		false			),
+	array('quest_tot',		    false			),
 
 	array('spell_page',			false			),
 	array('spell_tooltip',		false			),

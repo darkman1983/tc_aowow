@@ -14,7 +14,7 @@ if(!$quests = load_cache(QUEST_LISTING, $cache_key))
 {
 	unset($quests);
 
-	$rows = $DB->select('
+	$rows = $DB->select("
 		SELECT q.?#
 		{
 			, l.Title_loc?d AS Title_loc
@@ -25,9 +25,16 @@ if(!$quests = load_cache(QUEST_LISTING, $cache_key))
 			1 = 1
 			{ AND ZoneOrSort = ? }
 			{ AND ZoneOrSort IN (?a) }
+			AND q.Title NOT IN ('','----','?????')
+			AND q.Title NOT LIKE '<DEPRECATED>%'
+			AND q.Title NOT LIKE '<NYI>%'
+			AND q.Title NOT LIKE '<nyi>%'
+			AND q.Title NOT LIKE '<TEST>%'
+			AND q.Title NOT LIKE '<TXT>%'
+			AND q.Title NOT LIKE '<UNUSED%'
 		ORDER BY Title
 		{LIMIT ?d}
-		',
+		",
 		$quest_cols[2],
 		($_SESSION['locale']>0)? $_SESSION['locale']: DBSIMPLE_SKIP,
 		($_SESSION['locale']>0)? 1: DBSIMPLE_SKIP,
@@ -42,6 +49,28 @@ if(!$quests = load_cache(QUEST_LISTING, $cache_key))
 
 	save_cache(QUEST_LISTING, $cache_key, $quests);
 }
+
+if(!$quests_tot = load_cache(QUEST_TOT, 'quest_tot'))
+{
+    unset($quests_tot);
+    
+    $quests_tot = $DB->select("
+		SELECT COUNT(q.entry) as quest_tot
+		FROM quest_template q
+		WHERE
+			q.Title NOT IN ('','----','?????')
+			AND q.Title NOT LIKE '<DEPRECATED>%'
+			AND q.Title NOT LIKE '<NYI>%'
+			AND q.Title NOT LIKE '<nyi>%'
+			AND q.Title NOT LIKE '<TEST>%'
+			AND q.Title NOT LIKE '<TXT>%'
+			AND q.Title NOT LIKE '<UNUSED%'
+		"
+	);
+	
+	save_cache(QUEST_LISTING, 'quest_tot', $quests_tot[0]['quest_tot']);
+}
+	
 global $page;
 $page = array(
 	'Mapper' => false,
@@ -52,9 +81,10 @@ $page = array(
 	'typeid' => 0,
 	'path' => path(0, 3, $Type, $ZoneOrSort) // TODO
 );
-$smarty->assign('page', $page);
 
+$smarty->assign('page', $page);
 $smarty->assign('quests',$quests);
+$smarty->assign('quests_tot',(is_array($quests_tot) ? $quests_tot[0]['quest_tot'] : $quests_tot));
 // Количество MySQL запросов
 $smarty->assign('mysql', $DB->getStatistics());
 // Загружаем страницу

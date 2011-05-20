@@ -10,7 +10,7 @@
 				<div id="lv-objects" class="listview"></div>
 
 				<script type="text/javascript">
-					{include file='bricks/object_table.tpl' id='objects' data=$data} 
+					{include file='bricks/object_table.tpl' id='objects' data=$data num_objects=$objects_tot} 
 				</script>
 
 				<div class="clear"></div>
