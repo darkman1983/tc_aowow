@@ -185,7 +185,7 @@ function spell_to_bonus($spell_id, $trigger, $charges, $ppmrate, $cooldown, $cat
 	if($tooltip == '_empty_')
 		return;
 	if(!$tooltip)
-		return '<a href="?spell='.$spell_id.'">Error in spell_desc for spell '.$spell_id.'</a>';
+		return; //'<a href="?spell='.$spell_id.'">Error in spell_desc for spell '.$spell_id.'</a>';
 	switch($trigger)
 	{
 		case 0:
@@ -457,9 +457,11 @@ function render_item_tooltip(&$Row)
 	for($j=1;$j<=5;$j++)
 	{
 		if($Row['spellid_'.$j])
-			$green[]=spell_to_bonus($Row['spellid_'.$j], $Row['spelltrigger_'.$j],
+		{
+				$green[]= spell_to_bonus($Row['spellid_'.$j], $Row['spelltrigger_'.$j],
 				$Row['spellcharges_'.$j], $Row['spellppmRate_'.$j],
 				$Row['spellcooldown_'.$j], $Row['spellcategorycooldown_'.$j]);
+		}
 	}
 
 	// Перебираем все "зеленые" бонусы

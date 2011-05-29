@@ -24,6 +24,7 @@ function loot($table, $lootid, $group = 0)
 			{LEFT JOIN (locales_item loc) ON loc.entry=i.entry AND ?d}
 		WHERE
 			l.entry=?d
+			AND l.entry <> 0
 			{ AND l.groupid = ?d }
 		{LIMIT ?d}
 		',
@@ -63,7 +64,7 @@ function loot($table, $lootid, $group = 0)
 	// Cохраняем весь нессылочный лут
 	$loot = array();
 	foreach ($rows as $row)
-		if ($row['mincountOrRef'] >= 0)
+		if ($row['mincountOrRef'] > 0)
 		{
 			$chance = $row['ChanceOrQuestChance'];
 			if($chance == 0) // Запись из группы с равным шансом дропа, считаем реальную вероятность
@@ -541,6 +542,7 @@ function transform_coords2($points)
 						$cached_images[$area['areatableID']] = imagecreatefrompng($maskfilename);
 					$game_x = 100 - ($point['y']-$area['y_min']) / (($area['y_max']-$area['y_min']) / 100);
 					$game_y = 100 - ($point['x']-$area['x_min']) / (($area['x_max']-$area['x_min']) / 100);
+
 					if (imagecolorat($cached_images[$area['areatableID']], round($game_x * 10), round($game_y * 10)) === 0)
 						$curpriority |= 4;
 			        }
