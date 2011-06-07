@@ -10080,4 +10080,3 @@ var Ads = {
 		}
 	}
 };
-//DomContentLoaded.addEvent(Ads.install);
