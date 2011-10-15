@@ -166,7 +166,7 @@ function allachievementsinfo2($row, $level = 0)
 				$rows[] = $_row;
 		}
 		if($tmp)
-			$rows = array_merge($rows, $tmp);
+			$rows = @array_merge($rows, $tmp);
 
 		$x = '';
 		$x .= '<table><tr><td><b class="q">';

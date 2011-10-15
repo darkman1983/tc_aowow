@@ -261,7 +261,7 @@ if(!$achievement = load_cache(ACHIEVEMENT_PAGE, $cache_key))
 		}
 		// Если найден второй столбик - суем данные из него в конец основного массива
 		if($tmp_arr)
-			$achievement['criterias'] = array_merge($achievement['criterias'], $tmp_arr);
+			$achievement['criterias'] = @array_merge($achievement['criterias'], $tmp_arr);
 
 
 		/*************** ЦЕПОЧКА ДОСТИЖЕНИЙ ***************/

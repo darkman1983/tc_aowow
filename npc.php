@@ -77,7 +77,7 @@ if(!$npc = load_cache(NPC_PAGE, $cache_key))
 		$npc['faction'] = $row['faction-name'];
 		// Деньги
 		$money = ($row['mingold']+$row['maxgold']) / 2;
-		$npc = array_merge($npc, money2coins($money));
+		$npc = @array_merge($npc, money2coins($money));
 		// Героик/нормал копия НПС
 		if($npc['difficulty_entry_1'])
 		{

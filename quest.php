@@ -325,7 +325,7 @@ if(!$quest = load_cache(QUEST_PAGE, $cache_key))
 			if($quest['ReqCreatureOrGOId'.$i] > 0)
 			{
 				// Необходимо какое-либо взамодействие с созданием
-				$quest['coreqs'][$i] = array_merge(
+				$quest['coreqs'][$i] = @array_merge(
 					creatureinfo($quest['ReqCreatureOrGOId'.$i]),
 					array('req_type' => 'npc')
 				);
@@ -333,7 +333,7 @@ if(!$quest = load_cache(QUEST_PAGE, $cache_key))
 			else
 			{
 				// необходимо какое-то взаимодействие с объектом
-				$quest['coreqs'][$i] = array_merge(
+				$quest['coreqs'][$i] = @array_merge(
 					objectinfo(-$quest['ReqCreatureOrGOId'.$i]),
 					array('req_type' => 'object')
 				);
@@ -356,7 +356,7 @@ if(!$quest = load_cache(QUEST_PAGE, $cache_key))
 	for($i=0;$i<=4;++$i)
 	{
 		if($quest['ReqItemId'.$i]!=0 && $quest['ReqItemCount'.$i]!=0)
-			$quest['itemreqs'][] = array_merge(iteminfo($quest['ReqItemId'.$i]), array('count' => $quest['ReqItemCount'.$i]));
+			$quest['itemreqs'][] = @array_merge(iteminfo($quest['ReqItemId'.$i]), array('count' => $quest['ReqItemCount'.$i]));
 	}
 	if(!$quest['itemreqs'])
 		unset($quest['itemreqs']);
@@ -398,7 +398,7 @@ if(!$quest = load_cache(QUEST_PAGE, $cache_key))
 				$tmp['side'] = 'horde';
 			elseif($tmp['A'] == 1 && $tmp['H'] == -1)
 				$tmp['side'] = 'alliance';
-			$quest['start'][] = array_merge($tmp, array('type' => 'npc'));
+			$quest['start'][] = @array_merge($tmp, array('type' => 'npc'));
 		}
 	}
 	unset($rows);
@@ -442,7 +442,7 @@ if(!$quest = load_cache(QUEST_PAGE, $cache_key))
 		foreach($rows as $tmp)
 		{
 			$tmp['name'] = localizedName($tmp);
-			$quest['start'][] = array_merge($tmp, array('type' => 'object'));
+			$quest['start'][] = @array_merge($tmp, array('type' => 'object'));
 		}
 	}
 	unset($rows);
@@ -466,7 +466,7 @@ if(!$quest = load_cache(QUEST_PAGE, $cache_key))
 		foreach($rows as $tmp)
 		{
 			$tmp['name'] = localizedName($tmp);
-			$quest['start'][] = array_merge($tmp, array('type' => 'item'));
+			$quest['start'][] = @array_merge($tmp, array('type' => 'item'));
 		}
 	}
 	unset($rows);
@@ -496,7 +496,7 @@ if(!$quest = load_cache(QUEST_PAGE, $cache_key))
 				$tmp['side'] = 'horde';
 			elseif($tmp['A'] == 1 && $tmp['H'] == -1)
 				$tmp['side'] = 'alliance';
-			$quest['end'][] = array_merge($tmp, array('type' => 'npc'));
+			$quest['end'][] = @array_merge($tmp, array('type' => 'npc'));
 		}
 	}
 	unset($rows);
@@ -520,7 +520,7 @@ if(!$quest = load_cache(QUEST_PAGE, $cache_key))
 		foreach($rows as $tmp)
 		{
 			$tmp['name'] = localizedName($tmp);
-			$quest['end'][] = array_merge($tmp, array('type' => 'object'));
+			$quest['end'][] = @array_merge($tmp, array('type' => 'object'));
 		}
 	}
 	unset($rows);

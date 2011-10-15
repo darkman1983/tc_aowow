@@ -95,7 +95,7 @@ function smarty_function_config_load($params, &$smarty)
                 return;
             }
             $smarty->_conf_obj->set_file_contents($_file, $_params['source_content']);
-            $_config_vars = array_merge($smarty->_conf_obj->get($_file),
+            $_config_vars = @array_merge($smarty->_conf_obj->get($_file),
                     $smarty->_conf_obj->get($_file, $_section));
             if(function_exists('var_export')) {
                 $_output = '<?php $_config_vars = ' . var_export($_config_vars, true) . '; ?>';
@@ -113,15 +113,15 @@ function smarty_function_config_load($params, &$smarty)
             $smarty->_cache_info['config'][$_file] = true;
         }
 
-        $smarty->_config[0]['vars'] = @array_merge($smarty->_config[0]['vars'], $_config_vars);
+        $smarty->_config[0]['vars'] = @@array_merge($smarty->_config[0]['vars'], $_config_vars);
         $smarty->_config[0]['files'][$_file] = true;
 
         if ($_scope == 'parent') {
-                $smarty->_config[1]['vars'] = @array_merge($smarty->_config[1]['vars'], $_config_vars);
+                $smarty->_config[1]['vars'] = @@array_merge($smarty->_config[1]['vars'], $_config_vars);
                 $smarty->_config[1]['files'][$_file] = true;
         } else if ($_scope == 'global') {
             for ($i = 1, $for_max = count($smarty->_config); $i < $for_max; $i++) {
-                $smarty->_config[$i]['vars'] = @array_merge($smarty->_config[$i]['vars'], $_config_vars);
+                $smarty->_config[$i]['vars'] = @@array_merge($smarty->_config[$i]['vars'], $_config_vars);
                 $smarty->_config[$i]['files'][$_file] = true;
             }
         }

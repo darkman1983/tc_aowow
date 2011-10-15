@@ -464,7 +464,7 @@ function transform_coords($recv)
 				$loaded_areas[] = $area['areatableID'];
 				$at_dataoffsets[$area['areatableID']] = $at_dataoffsets_offset++;
 			}
-			$at_data = array_merge($at_data, $result);
+			$at_data = @array_merge($at_data, $result);
 			$chosen_area = select_zone($at_data, $point);
 		}
 		// Если зона так и не найдена (исключительный случай)
@@ -639,7 +639,7 @@ function position($id, $type, $spawnMask = 0)
 				$AoWoWconf['map_grouping'] > 0 ? -$AoWoWconf['map_grouping'] : DBSIMPLE_SKIP,
 				$AoWoWconf['map_grouping'] > 0 ? -$AoWoWconf['map_grouping'] : DBSIMPLE_SKIP
 			);
-			$data = array_merge($wps, $data);
+			$data = @array_merge($wps, $data);
 		}
 	}
 

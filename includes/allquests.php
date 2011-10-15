@@ -439,7 +439,7 @@ function GetQuestInfo(&$data, $dataflag = QUEST_DATAFLAG_MINIMUM)
 		);
 
 		if($row)
-			$data = array_merge($data, $row);
+			$data = @array_merge($data, $row);
 	}
 	// Минимальные данные
 	// ID квеста
@@ -507,13 +507,13 @@ function GetQuestInfo(&$data, $dataflag = QUEST_DATAFLAG_MINIMUM)
 		// Награды вещей
 		for($j=0;$j<=6;++$j)
 			if(($data['RewChoiceItemId'.$j]!=0) and ($data['RewChoiceItemCount'.$j]!=0))
-				$data['itemchoices'][] = array_merge(
+				$data['itemchoices'][] = @array_merge(
 					allitemsinfo($data['RewChoiceItemId'.$j], 0),
 					array('count' => $data['RewChoiceItemCount'.$j])
 				);
 		for($j=0;$j<=4;++$j)
 			if(($data['RewItemId'.$j]!=0) and ($data['RewItemCount'.$j]!=0))
-				$data['itemrewards'][] = array_merge(
+				$data['itemrewards'][] = @array_merge(
 					allitemsinfo($data['RewItemId'.$j], 0),
 					array('count' => $data['RewItemCount'.$j])
 				);
@@ -526,7 +526,7 @@ function GetQuestInfo(&$data, $dataflag = QUEST_DATAFLAG_MINIMUM)
 				if (!$value && isset($quest_faction_reward[$id]))
 					$value=$quest_faction_reward[$id];
 				if ($value)
-					$data['reprewards'][] = array_merge(factioninfo($data['RewRepFaction'.$j]), array('value' => $value));
+					$data['reprewards'][] = @array_merge(factioninfo($data['RewRepFaction'.$j]), array('value' => $value));
 			}
 		// Вознаграждение деньгами
 		if($data['RewOrReqMoney']>0)

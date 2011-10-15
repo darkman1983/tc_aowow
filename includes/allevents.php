@@ -75,7 +75,7 @@ function event_name($events)
 	if ($rows)
 	{
 		foreach ($rows as $event)
-			$result[$event['eventEntry']] = array_merge($result[$event['eventEntry']], $event);
+			$result[$event['eventEntry']] = @array_merge($result[$event['eventEntry']], $event);
 	}
 
 	return $result;
@@ -107,7 +107,7 @@ function event_infoline($events)
 	if ($rows)
 	{
 		foreach ($rows as $row)
-			$result[$row['eventEntry']] = array_merge(
+			$result[$row['eventEntry']] = @array_merge(
 				$result[$row['eventEntry']],
 				$row,
 				event_startend($row['gen_start'], $row['gen_end'], $row['occurence'], $row['length']),

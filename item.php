@@ -49,7 +49,7 @@ if(!$item = load_cache(ITEM_PAGE, $cache_key))
 				$lootid
 			);
 			foreach($rows as $row)
-				$item['droppedby'][] = array_merge(creatureinfo2($row), $drop);
+				$item['droppedby'][] = @array_merge(creatureinfo2($row), $drop);
 		}
 		unset($rows);
 		unset($lootid);
@@ -85,13 +85,13 @@ if(!$item = load_cache(ITEM_PAGE, $cache_key))
 			{
 				// Залежи руды
 				if($row['lockproperties1'] == LOCK_PROPERTIES_MINING)
-					$item['minedfromobject'][] = array_merge(objectinfo2($row), $drop);
+					$item['minedfromobject'][] = @array_merge(objectinfo2($row), $drop);
 				// Собирается с трав
 				elseif($row['lockproperties1'] == LOCK_PROPERTIES_HERBALISM)
-					$item['gatheredfromobject'][] = array_merge(objectinfo2($row), $drop);
+					$item['gatheredfromobject'][] = @array_merge(objectinfo2($row), $drop);
 				// Сундуки
 				else
-					$item['containedinobject'][] = array_merge(objectinfo2($row), $drop);
+					$item['containedinobject'][] = @array_merge(objectinfo2($row), $drop);
 			}
 		}
 
@@ -284,7 +284,7 @@ if(!$item = load_cache(ITEM_PAGE, $cache_key))
 				$lootid
 			);
 			foreach($rows as $row)
-				$item['containedinitem'][] = array_merge(iteminfo2($row, 0), $drop);
+				$item['containedinitem'][] = @array_merge(iteminfo2($row, 0), $drop);
 		}
 		unset($drops_cii);
 		unset($rows);
@@ -322,7 +322,7 @@ if(!$item = load_cache(ITEM_PAGE, $cache_key))
 				$lootid
 			);
 			foreach($rows as $row)
-				$item['pickpocketingloot'][] = array_merge(creatureinfo2($row), $drop);
+				$item['pickpocketingloot'][] = @array_merge(creatureinfo2($row), $drop);
 		}
 		unset($rows);
 		unset($lootid);
@@ -356,7 +356,7 @@ if(!$item = load_cache(ITEM_PAGE, $cache_key))
 				$lootid
 			);
 			foreach($rows as $row)
-				$item['skinnedfrom'][] = array_merge(creatureinfo2($row), $drop);
+				$item['skinnedfrom'][] = @array_merge(creatureinfo2($row), $drop);
 		}
 		unset($rows);
 		unset($lootid);
@@ -392,7 +392,7 @@ if(!$item = load_cache(ITEM_PAGE, $cache_key))
 				$lootid
 			);
 			foreach($rows as $row)
-				$item['prospectingloot'][] = array_merge(iteminfo2($row, 0), $drop);
+				$item['prospectingloot'][] = @array_merge(iteminfo2($row, 0), $drop);
 		}
 		unset($rows);
 		unset($lootid);
@@ -428,7 +428,7 @@ if(!$item = load_cache(ITEM_PAGE, $cache_key))
 				$lootid
 			);
 			foreach($rows as $row)
-				$item['disenchantedfrom'][] = array_merge(iteminfo2($row, 0), $drop);
+				$item['disenchantedfrom'][] = @array_merge(iteminfo2($row, 0), $drop);
 		}
 		unset($rows);
 		unset($lootid);
@@ -549,7 +549,7 @@ if(!$item = load_cache(ITEM_PAGE, $cache_key))
 				',
 				$row['spellID']
 			);
-			$item['createdfrom'][] = spellinfo2(array_merge($row, $skillrow));
+			$item['createdfrom'][] = spellinfo2(@array_merge($row, $skillrow));
 		}
 		unset($skillrow);
 	}
@@ -575,7 +575,7 @@ if(!$item = load_cache(ITEM_PAGE, $cache_key))
 			);
 			if($row)
 			{
-				$item['fishedin'][] = array_merge($row, $drop);
+				$item['fishedin'][] = @array_merge($row, $drop);
 			}
 			else
 			{
@@ -590,7 +590,7 @@ if(!$item = load_cache(ITEM_PAGE, $cache_key))
 					$lootid
 				);
 				if($row)
-					$item['fishedin'][] = array_merge($row, $drop);
+					$item['fishedin'][] = @array_merge($row, $drop);
 			}
 		}
 		unset($row);
@@ -626,7 +626,7 @@ if(!$item = load_cache(ITEM_PAGE, $cache_key))
 				$lootid
 			);
 			foreach($rows as $row)
-				$item['milledfrom'][] = array_merge(iteminfo2($row, 0), $drop);
+				$item['milledfrom'][] = @array_merge(iteminfo2($row, 0), $drop);
 		}
 		unset($rows);
 		unset($lootid);

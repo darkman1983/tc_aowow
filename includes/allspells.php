@@ -381,7 +381,7 @@ function spell_desc2($spellRow, $type='tooltip')
 		{
 			case 'r':
 				if(!IsSet($spellRow['rangeMax']))
-					$spellRow = array_merge($spellRow, $DB->selectRow('SELECT * FROM ?_spellrange WHERE rangeID=? LIMIT 1', $spellRow['rangeID']));
+					$spellRow = @array_merge($spellRow, $DB->selectRow('SELECT * FROM ?_spellrange WHERE rangeID=? LIMIT 1', $spellRow['rangeID']));
 
 				$base = $spellRow['rangeMax'];
 

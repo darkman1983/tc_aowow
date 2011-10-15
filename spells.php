@@ -130,7 +130,7 @@ if(!$spells = load_cache(SPELL_LISTING, $cache_key))
 		$rows = array();
 		for($i=1; $i<=5; $i++)
 		{
-			$rows = array_merge($rows, $DB->select('
+			$rows = @array_merge($rows, $DB->select('
 				SELECT DISTINCT ?#, `s`.`spellID`
 				FROM ?_talenttab b, ?_talent t, ?_spell s, ?_spellicons i {, ?_skill_line_ability ?# }
 				WHERE
@@ -159,7 +159,7 @@ if(!$spells = load_cache(SPELL_LISTING, $cache_key))
 		$rows = array();
 		for($i=1; $i<=5; $i++)
 		{
-			$rows = array_merge($rows, $DB->select('
+			$rows = @array_merge($rows, $DB->select('
 				SELECT DISTINCT ?#, `s`.`spellID`
 				FROM ?_talenttab b, ?_talent t, ?_spell s, ?_spellicons i
 				WHERE
