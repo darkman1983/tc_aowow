@@ -72,7 +72,7 @@ foreach($rows as $i => $row)
 // Ищем квесты:
 $rows = $DB->select('
 	SELECT q.entry, ?# as Title, q.RequiredRaces
-	FROM quest_template q {, ?# l}
+	FROM v_quest_template q {, ?# l}
 	WHERE
 		(?# LIKE ?)
 		{AND (q.entry=l.?#)}

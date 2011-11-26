@@ -368,7 +368,7 @@ if(!$spell = load_cache(SPELL_PAGE, $cache_key))
 			$taughtbyquest = $DB->select('
 				SELECT c.?#
 				{ , Title_loc?d AS Title_loc }
-				FROM quest_template c
+				FROM v_quest_template c
 				{ LEFT JOIN (locales_quest l) ON c.entry = l.entry AND ? }
 				WHERE
 					RewSpell IN (?a) OR RewSpellCast IN (?a)
@@ -504,7 +504,7 @@ if(!$spell = load_cache(SPELL_PAGE, $cache_key))
 		$questreward = $DB->select('
 			SELECT c.?#
 			{ , Title_loc?d AS Title_loc }
-			FROM quest_template c
+			FROM v_quest_template c
 			{ LEFT JOIN (locales_quest l) ON c.entry = l.entry AND ? }
 			WHERE
 				RewSpell = ?d

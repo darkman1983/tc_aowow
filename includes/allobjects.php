@@ -144,7 +144,7 @@ function objectinfo2(&$Row, $level=0)
 						* data5: maxRestock (Max successful loot attempts for Mining, Herbalism etc)
 						* data6: lootedEvent (unknown ID)
 						* data7: linkedTrap (gameobject_template.entry (Spawned GO type 6))
-						* data8: questID (quest_template.entry of completed quest)
+						* data8: questID (v_quest_template.entry of completed quest)
 						* data9: level (minimal level required to open this gameobject)
 						* data10: losOK (Boolean flag)
 						* data11: leaveLoot (Boolean flag)
@@ -166,7 +166,7 @@ function objectinfo2(&$Row, $level=0)
 						* data2: serverOnly? (Always 0)
 						* data3: large? (Boolean flag)
 						* data4: floatOnWater (Boolean flag)
-						* data5: questID (Required active quest_template.entry to work)
+						* data5: questID (Required active v_quest_template.entry to work)
 				*/
 				break;
 			case GAMEOBJECT_TYPE_TRAP:
@@ -211,7 +211,7 @@ function objectinfo2(&$Row, $level=0)
 			case GAMEOBJECT_TYPE_GOOBER:
 				/*
 						* data0: open (LockId from Lock.dbc)
-						* data1: questID (Required active quest_template.entry to work)
+						* data1: questID (Required active v_quest_template.entry to work)
 						* data2: eventID (Unknown Event ID)
 						* data3:  ? (unknown flag)
 						* data4: customAnim (unknown)

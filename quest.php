@@ -39,7 +39,7 @@ if(!$quest = load_cache(QUEST_PAGE, $cache_key))
 		$tmp = $DB->selectRow('
 			SELECT q.entry, q.Title
 				{, l.Title_loc?d as Title_loc}
-			FROM quest_template q
+			FROM v_quest_template q
 				{LEFT JOIN (locales_quest l) ON l.entry=q.entry AND ?d}
 			WHERE q.NextQuestInChain=?d
 			LIMIT 1
@@ -61,7 +61,7 @@ if(!$quest = load_cache(QUEST_PAGE, $cache_key))
 		$tmp = $DB->selectRow('
 			SELECT q.entry, q.Title, q.NextQuestInChain
 				{, l.Title_loc?d as Title_loc}
-			FROM quest_template q
+			FROM v_quest_template q
 				{LEFT JOIN (locales_quest l) ON l.entry=q.entry AND ?}
 			WHERE q.entry=?d
 			LIMIT 1
@@ -89,7 +89,7 @@ if(!$quest = load_cache(QUEST_PAGE, $cache_key))
 	if(!$quest['req'] = $DB->select('
 				SELECT q.entry, q.Title, q.NextQuestInChain
 					{, l.Title_loc?d as Title_loc}
-				FROM quest_template q
+				FROM v_quest_template q
 					{LEFT JOIN (locales_quest l) ON l.entry=q.entry AND ?}
 				WHERE
 					(q.NextQuestID=?d AND q.ExclusiveGroup<0)
@@ -107,7 +107,7 @@ if(!$quest = load_cache(QUEST_PAGE, $cache_key))
 	if(!$quest['open'] = $DB->select('
 				SELECT q.entry, q.Title
 					{, l.Title_loc?d as Title_loc}
-				FROM quest_template q
+				FROM v_quest_template q
 					{LEFT JOIN (locales_quest l) ON l.entry=q.entry AND ?}
 				WHERE
 					(q.PrevQuestID=?d AND q.entry<>?d)
@@ -126,7 +126,7 @@ if(!$quest = load_cache(QUEST_PAGE, $cache_key))
 		if(!$quest['closes'] = $DB->select('
 				SELECT q.entry, q.Title
 					{, l.Title_loc?d as Title_loc}
-				FROM quest_template q
+				FROM v_quest_template q
 					{LEFT JOIN (locales_quest l) ON l.entry=q.entry AND ?}
 				WHERE
 					q.ExclusiveGroup=?d AND q.entry<>?d
@@ -144,7 +144,7 @@ if(!$quest = load_cache(QUEST_PAGE, $cache_key))
 	if(!$quest['reqone'] = $DB->select('
 				SELECT q.entry, q.Title
 					{, l.Title_loc?d as Title_loc}
-				FROM quest_template q
+				FROM v_quest_template q
 					{LEFT JOIN (locales_quest l) ON l.entry=q.entry AND ?}
 				WHERE
 					q.ExclusiveGroup>0 AND q.NextQuestId=?d
@@ -162,7 +162,7 @@ if(!$quest = load_cache(QUEST_PAGE, $cache_key))
 	if(!$quest['enables'] = $DB->select('
 				SELECT q.entry, q.Title
 					{, l.Title_loc?d as Title_loc}
-				FROM quest_template q
+				FROM v_quest_template q
 					{LEFT JOIN (locales_quest l) ON l.entry=q.entry AND ?}
 				WHERE q.PrevQuestID=?d
 				LIMIT 20
@@ -180,7 +180,7 @@ if(!$quest = load_cache(QUEST_PAGE, $cache_key))
 		if(!$quest['enabledby'] = $DB->select('
 				SELECT q.entry, q.Title
 					{, l.Title_loc?d as Title_loc}
-				FROM quest_template q
+				FROM v_quest_template q
 					{LEFT JOIN (locales_quest l) ON l.entry=q.entry AND ?}
 				WHERE q.entry=?d
 				LIMIT 20
@@ -203,7 +203,7 @@ if(!$quest = load_cache(QUEST_PAGE, $cache_key))
 
 	/*             НАГРАДЫ И ТРЕБОВАНИЯ             */
 
-	if($quest['RequiredSkillValue']>0 && $quest['SkillOrClassMask']>0)
+	if($quest['RequiredSkillValue']>0 && $quest['RequiredSkill']>0)
 	{
 		// Требуемый уровень скилла, что бы получить квест
 		/*
@@ -222,15 +222,15 @@ if(!$quest = load_cache(QUEST_PAGE, $cache_key))
 		
 		// TODO: skill localization
 		$quest['reqskill'] = array(
-			'name' => $DB->selectCell('SELECT name_loc'.$_SESSION['locale'].' FROM ?_skill WHERE skillID=?d LIMIT 1',$quest['SkillOrClassMask']),
+			'name' => $DB->selectCell('SELECT name_loc'.$_SESSION['locale'].' FROM ?_skill WHERE skillID=?d LIMIT 1',$quest['RequiredSkill']),
 			'value' => $quest['RequiredSkillValue']
 		);
 	}
-	elseif($quest['SkillOrClassMask']<0)
+	elseif($quest['RequiredClasses']>0)
 	{
 		$s = array();
 		foreach($classes as $i => $class)
-			if (intval(-$quest['SkillOrClassMask']) & (1<<$i))
+			if (intval(-$quest['RequiredClasses']) & (1<<$i))
 				$s[] = $class;
 		if (count($s) == 0) $s[] = "UNKNOWN";
 		// Требуемый класс, что бы получить квест

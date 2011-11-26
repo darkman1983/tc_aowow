@@ -141,7 +141,7 @@ if($_SESSION['locale']>0)
 $rows = $DB->select("
 		SELECT *
 			{, l.Title_loc?d AS `Title_loc`}
-		FROM quest_template q
+		FROM v_quest_template q
 			{LEFT JOIN (locales_quest l) ON l.entry=q.entry AND ?d}
 		WHERE Title LIKE ? {OR q.entry IN (?a)}
 		AND q.Title NOT IN ('','----','?????')

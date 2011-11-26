@@ -161,7 +161,7 @@ if(!$item = load_cache(ITEM_PAGE, $cache_key))
 	// Поиск квестов, для выполнения которых нужен этот предмет
 	$rows_qr = $DB->select('
 			SELECT q.?# {, l.Title_loc?d AS Title_loc}
-			FROM quest_template q
+			FROM v_quest_template q
 			{ LEFT JOIN (locales_quest l) ON l.entry=q.entry AND ? }
 			WHERE
 				ReqItemId1=?d
@@ -185,7 +185,7 @@ if(!$item = load_cache(ITEM_PAGE, $cache_key))
 	// Поиск квестов, при взятии которых выдается этот предмет
 	$rows_qp = $DB->select('
 			SELECT q.?# {, l.Title_loc?d AS Title_loc}
-			FROM quest_template q
+			FROM v_quest_template q
 			{ LEFT JOIN (locales_quest l) ON l.entry=q.entry AND ? }
 			WHERE SrcItemId=?d
 		',
@@ -205,7 +205,7 @@ if(!$item = load_cache(ITEM_PAGE, $cache_key))
 	// Поиск квестов, наградой за выполнение которых, является этот предмет
 	$rows_qrw = $DB->select('
 			SELECT q.?# {, l.Title_loc?d AS Title_loc}
-			FROM quest_template q 
+			FROM v_quest_template q 
 			{ LEFT JOIN (locales_quest l) ON l.entry=q.entry AND ? }
 			WHERE
 				RewItemId1=?d
@@ -241,7 +241,7 @@ if(!$item = load_cache(ITEM_PAGE, $cache_key))
 		{
 			$rows_qm = $DB->select('
 					SELECT q.?# {, l.Title_loc?d AS Title_loc}
-					FROM quest_template q
+					FROM v_quest_template q
 					{ LEFT JOIN (locales_quest l) ON l.entry=q.entry AND ? }
 					WHERE RewMailTemplateId=?d
 				',

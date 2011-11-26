@@ -99,7 +99,7 @@ if(!$faction = load_cache(FACTION_PAGE, $cache_key))
 		// Квесты для этой фракции
 		$quests_rows = $DB->select('
 			SELECT ?#
-			FROM quest_template
+			FROM v_quest_template
 			WHERE
 				RewRepFaction1=?d
 				OR RewRepFaction2=?d
