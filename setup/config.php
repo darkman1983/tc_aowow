@@ -24,5 +24,5 @@
   $config['local_dbc'] = "data/DBFilesClient/";
 
   /// Locale ID. Used only by aowow_sql_loc.php.
-  $config['locale'] = 8; // (2 - french, 3 - german, 8 - russian)
+  $config['locale'] = 3; // (2 - french, 3 - german, 8 - russian)
 ?>

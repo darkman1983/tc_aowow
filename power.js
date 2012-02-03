@@ -1632,8 +1632,7 @@ function () {
 			P = aa.href.match(/()\?(item|quest|spell|achievement|npc|object|profile)=([^&#]+)/)
 		//}
 		
-		// P =
-		// aa.href.match(/()\?(item|quest|spell|achievement|npc|object|profile)=([^&#]+)/)
+		// P = aa.href.match(/()\?(item|quest|spell|achievement|npc|object|profile)=([^&#]+)/)
 		if (P == null && aa.rel) {
 			T = 0;
 			S = 1;
