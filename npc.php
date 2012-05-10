@@ -360,10 +360,10 @@ if(!$npc = load_cache(NPC_PAGE, $cache_key))
 			SELECT ?#
 			FROM v_quest_template
 			WHERE
-				ReqCreatureOrGOId1=?
-				OR ReqCreatureOrGOId2=?
-				OR ReqCreatureOrGOId3=?
-				OR ReqCreatureOrGOId4=?
+				RequiredNpcOrGO1=?
+				OR RequiredNpcOrGO2=?
+				OR RequiredNpcOrGO3=?
+				OR RequiredNpcOrGO4=?
 			',
 			$quest_cols[2],
 			$id, $id, $id, $id
