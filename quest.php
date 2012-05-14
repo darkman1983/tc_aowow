@@ -41,7 +41,7 @@ if(!$quest = load_cache(QUEST_PAGE, $cache_key))
 				{, l.Title_loc?d as Title_loc}
 			FROM v_quest_template q
 				{LEFT JOIN (locales_quest l) ON l.entry=q.entry AND ?d}
-			WHERE q.NextQuestInChain=?d
+			WHERE q.NextQuestIdChain=?d
 			LIMIT 1
 			',
 			($_SESSION['locale']>0)? $_SESSION['locale']: DBSIMPLE_SKIP,
@@ -54,12 +54,13 @@ if(!$quest = load_cache(QUEST_PAGE, $cache_key))
 			array_unshift($quest['series'], $tmp);
 		}
 	}
+	
 	// Квесты в цепочке после этого квеста
 	$tmp = end($quest['series']);
 	while($tmp)
 	{
 		$tmp = $DB->selectRow('
-			SELECT q.entry, q.Title, q.NextQuestInChain
+			SELECT q.entry, q.Title, q.NextQuestIdChain
 				{, l.Title_loc?d as Title_loc}
 			FROM v_quest_template q
 				{LEFT JOIN (locales_quest l) ON l.entry=q.entry AND ?}
@@ -79,7 +80,7 @@ if(!$quest = load_cache(QUEST_PAGE, $cache_key))
 	unset($tmp);
 	if(count($quest['series'])<=1)
 		unset($quest['series']);
-
+	
 
 	/*              ДРУГИЕ КВЕСТЫ              */
 	// (после их нахождения проверяем их тайтлы на наличие локализации)
@@ -87,16 +88,16 @@ if(!$quest = load_cache(QUEST_PAGE, $cache_key))
 
 	// Квесты, которые необходимо выполнить, что бы получить этот квест
 	if(!$quest['req'] = $DB->select('
-				SELECT q.entry, q.Title, q.NextQuestInChain
+				SELECT q.entry, q.Title, q.NextQuestIdChain
 					{, l.Title_loc?d as Title_loc}
 				FROM v_quest_template q
 					{LEFT JOIN (locales_quest l) ON l.entry=q.entry AND ?}
 				WHERE
 					(q.NextQuestID=?d AND q.ExclusiveGroup<0)
-					OR (q.entry=?d AND q.NextQuestInChain<>?d)
+					OR (q.entry=?d AND q.NextQuestIdChain<>?d)
 				LIMIT 20',
 				($_SESSION['locale']>0)? $_SESSION['locale']: DBSIMPLE_SKIP, ($_SESSION['locale']>0)? 1: DBSIMPLE_SKIP,
-				$quest['entry'], $quest['PrevQuestID'], $quest['entry']
+				$quest['entry'], $quest['PrevQuestId'], $quest['entry']
 				)
 		)
 			unset($quest['req']);
@@ -110,7 +111,7 @@ if(!$quest = load_cache(QUEST_PAGE, $cache_key))
 				FROM v_quest_template q
 					{LEFT JOIN (locales_quest l) ON l.entry=q.entry AND ?}
 				WHERE
-					(q.PrevQuestID=?d AND q.entry<>?d)
+					(q.PrevQuestId=?d AND q.entry<>?d)
 					OR q.entry=?d
 				LIMIT 20',
 				($_SESSION['locale']>0)? $_SESSION['locale']: DBSIMPLE_SKIP, ($_SESSION['locale']>0)? 1: DBSIMPLE_SKIP,
@@ -120,7 +121,7 @@ if(!$quest = load_cache(QUEST_PAGE, $cache_key))
 			unset($quest['open']);
 		else
 			$questItems[] = 'open';
-
+		
 	// Квесты, которые становятся недоступными после выполнения этого квеста
 	if($quest['ExclusiveGroup']>0)
 		if(!$quest['closes'] = $DB->select('
@@ -157,14 +158,14 @@ if(!$quest = load_cache(QUEST_PAGE, $cache_key))
 			unset($quest['reqone']);
 		else
 			$questItems[] = 'reqone';
-
+		
 	// Квесты, которые доступны, только во время выполнения этого квеста
 	if(!$quest['enables'] = $DB->select('
 				SELECT q.entry, q.Title
 					{, l.Title_loc?d as Title_loc}
 				FROM v_quest_template q
 					{LEFT JOIN (locales_quest l) ON l.entry=q.entry AND ?}
-				WHERE q.PrevQuestID=?d
+				WHERE q.PrevQuestId=?d
 				LIMIT 20
 				',
 				($_SESSION['locale']>0)? $_SESSION['locale']: DBSIMPLE_SKIP, ($_SESSION['locale']>0)? 1: DBSIMPLE_SKIP,
@@ -174,9 +175,9 @@ if(!$quest = load_cache(QUEST_PAGE, $cache_key))
 			unset($quest['enables']);
 		else
 			$questItems[] = 'enables';
-
+		
 	// Квесты, во время выполнения которых доступен этот квест
-	if($quest['PrevQuestID']<0)
+	if($quest['PrevQuestId']<0)
 		if(!$quest['enabledby'] = $DB->select('
 				SELECT q.entry, q.Title
 					{, l.Title_loc?d as Title_loc}
@@ -186,7 +187,7 @@ if(!$quest = load_cache(QUEST_PAGE, $cache_key))
 				LIMIT 20
 				',
 				($_SESSION['locale']>0)? $_SESSION['locale']: DBSIMPLE_SKIP, ($_SESSION['locale']>0)? 1: DBSIMPLE_SKIP,
-				-$quest['PrevQuestID']
+				-$quest['PrevQuestId']
 				)
 		)
 			unset($quest['enabledby']);
@@ -236,7 +237,7 @@ if(!$quest = load_cache(QUEST_PAGE, $cache_key))
 		// Требуемый класс, что бы получить квест
 		$quest['reqclass'] = implode(", ", $s);
 	}
-
+	
 	// Требуемые отношения с фракциями, что бы начать квест
 	if($quest['RequiredMinRepFaction'])
 		$quest['RequiredMinRep'] = array(
@@ -250,7 +251,7 @@ if(!$quest = load_cache(QUEST_PAGE, $cache_key))
 			'entry' => $quest['RequiredMaxRepFaction'],
 			'value' => reputations($quest['RequiredMaxRepValue'])
 		);
-
+	
 	// Спеллы не требуют локализации, их инфа берется из базы
 	// Хранить в базе все локализации - задачка на будующее
 
@@ -276,16 +277,16 @@ if(!$quest = load_cache(QUEST_PAGE, $cache_key))
 		}
 		unset($tmp);
 	}
-
+	
 	// Итем, выдаваемый игроку в начале квеста
 	if($quest['SrcItemId'])
 	{
 		$quest['SrcItem'] = iteminfo($quest['SrcItemId']);
 		$quest['SrcItem']['count'] = $quest['SrcItemCount'];
 	}
-
+	
 	// Дополнительная информация о квесте (флаги, повторяемость, скрипты)
-	$quest['flagsdetails'] = GetQuestFlagsDetails($quest);
+	$quest['flagsdetails'] = GetFlagsDetails($quest);
 	if (!$quest['flagsdetails'])
 		unset($quest['flagsdetails']);
 
@@ -576,6 +577,7 @@ $page = array(
 	'typeid' => $quest['entry'],
 	'path' => path(0, 5) // TODO
 );
+
 $smarty->assign('page', $page);
 
 // Комментарии
