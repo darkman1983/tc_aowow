@@ -1929,19 +1929,18 @@ var Menu = {
 					ns(U)
 				}
 				U.onmouseover = Menu.elemOver;
-				var G = ce("span"),
-				S = ce("span");
+				var G = ce("span"), S = ce("span");
 				if (Q[3] != null) {
-					G.className = "menusub"
+					G.className = "menusub";
 				}
 				if (Q.checked) {
-					S.className = "menucheck"
+					S.className = "menucheck";
 				}
 				if (Q.newWindow) {
-					U.target = "_blank"
+					U.target = "_blank";
 				}
 				if (Q.tinyIcon) {
-					S.style.background = "url(images/icons/tiny/" + Q.tinyIcon.toLowerCase() + ".gif) left center no-repeat"
+					S.style.background = "url(" + Q.tinyIcon + ") left center no-repeat";
 				} else {
 					if (Q.socketColor) {
 						S.className += " socket-" + g_file_gems[Q.socketColor]

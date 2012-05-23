@@ -893,7 +893,11 @@ var mn_community=[
 	[,"Soziales"],
 	[3,"Facebook Seite","http://www.facebook.com/Landoflegendswow?ref=ts"],
 	[4,"Twitter Seite","http://twitter.com/#!/landoflegends"]
-];mn_community[3].otherImage=["http://static.wowhead.com/images/icons/facebook.gif","-32"];mn_community[4].otherImage=["http://static.wowhead.com/images/icons/twitter.gif","-128"];
+];
+mn_community[0].tinyIcon=["images/icons/bubble.gif"];
+mn_community[1].tinyIcon=["images/icons/bubble.gif"];
+mn_community[3].tinyIcon=["images/icons/facebook.gif"];
+mn_community[4].tinyIcon=["images/icons/twitter.gif"];
 var mn_more=[
 	[,"LoL Projekte"],
 	[0,"Arsenal","http://arsenal.landoflegends.de"],
@@ -946,6 +950,8 @@ var mn_more=[
 		[99,"Thottbot","http://www.thottbot.com/"]
 	]]*/
 ];
+mn_more[1].tinyIcon=["images/icons/bubble.gif"];
+mn_more[2].tinyIcon=["images/icons/bubble.gif"];
 var mn_path=[
 	[0,"Datenbank",,mn_database],
 	[1,"Extras",,mn_tools],
