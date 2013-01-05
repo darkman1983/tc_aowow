@@ -369,7 +369,7 @@ if(!$spell = load_cache(SPELL_PAGE, $cache_key))
 				SELECT c.?#
 				{ , Title_loc?d AS Title_loc }
 				FROM v_quest_template c
-				{ LEFT JOIN (locales_quest l) ON c.entry = l.entry AND ? }
+				{ LEFT JOIN (locales_quest l) ON c.entry = l.Id AND ? }
 				WHERE
 					RewardSpell IN (?a) OR RewardSpellCast IN (?a)
 				',
@@ -505,7 +505,7 @@ if(!$spell = load_cache(SPELL_PAGE, $cache_key))
 			SELECT c.entry
 			{ , Title_loc?d AS Title_loc }
 			FROM v_quest_template c
-			{ LEFT JOIN (locales_quest l) ON c.entry = l.entry AND ? }
+			{ LEFT JOIN (locales_quest l) ON c.entry = l.Id AND ? }
 			WHERE
 				RewardSpell = ?d
 				OR RewardSpellCast = ?d

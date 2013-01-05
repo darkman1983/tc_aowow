@@ -20,7 +20,7 @@ if(!$quests = load_cache(QUEST_LISTING, $cache_key))
 			, l.Title_loc?d AS Title_loc
 		}
 		FROM v_quest_template q
-		{ LEFT JOIN (locales_quest l) ON l.entry=q.entry AND ? }
+		{ LEFT JOIN (locales_quest l) ON l.Id=q.entry AND ? }
 		WHERE
 			1 = 1
 			{ AND ZoneOrSort = ? }
