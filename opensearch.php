@@ -83,7 +83,7 @@ $rows = $DB->select('
 	$_SESSION['locale'] == 0 ? DBSIMPLE_SKIP : 'locales_quest',				// FROM
 	$_SESSION['locale'] == 0 ? 'Title' : 'Title_loc'.$_SESSION['locale'],	// WHERE1
 	$search_query,
-	$_SESSION['locale'] == 0 ? DBSIMPLE_SKIP : 'entry',						// WHERE2
+	$_SESSION['locale'] == 0 ? DBSIMPLE_SKIP : 'Id',						// WHERE2
 	$_SESSION['locale'] == 0 ? 'Title' : 'Title_loc'.$_SESSION['locale']	// ORDER
 );
 

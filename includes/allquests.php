@@ -94,7 +94,7 @@ $questcols[QUEST_DATAFLAG_REWARDS]	= array('RewardChoiceItemId1', 'RewardChoiceI
 $questcols[QUEST_DATAFLAG_PROPS]	= array('Type', 'RequiredClasses', 'ZoneOrSort', 'Flags', 'Level', 'MinLevel', 'RequiredRaces', 'RequiredSkillPoints', 'RequiredSkillId', 'LimitTime', 'SpecialFlags', 'RewardTitleId');
 $questcols[QUEST_DATAFLAG_SERIES]	= array('PrevQuestId', 'NextQuestIdChain', 'ExclusiveGroup', 'NextQuestId');
 
-$quest_cols[2] = array('entry', 'Title', 'Level', 'MinLevel', 'RequiredRaces', 'RewardChoiceItemId1', 'RewardChoiceItemId2', 'RewardChoiceItemId3', 'RewardChoiceItemId4', 'RewardChoiceItemId5', 'RewardChoiceItemId6', 'RewardChoiceItemCount1', 'RewardChoiceItemCount2', 'RewardChoiceItemCount3', 'RewardChoiceItemCount4', 'RewardChoiceItemCount5', 'RewardChoiceItemCount6', 'RewardItemId1', 'RewardItemId2', 'RewardItemId3', 'RewardItemId4', 'RewardItemCount1', 'RewardItemCount2', 'RewardItemCount3', 'RewardItemCount4', 'RewardMoneyMaxLevel', 'RewardOrRequiredMoney', 'Type', 'ZoneOrSort', 'Flags');
+$quest_cols[2] = array('Id', 'Title', 'Level', 'MinLevel', 'RequiredRaces', 'RewardChoiceItemId1', 'RewardChoiceItemId2', 'RewardChoiceItemId3', 'RewardChoiceItemId4', 'RewardChoiceItemId5', 'RewardChoiceItemId6', 'RewardChoiceItemCount1', 'RewardChoiceItemCount2', 'RewardChoiceItemCount3', 'RewardChoiceItemCount4', 'RewardChoiceItemCount5', 'RewardChoiceItemCount6', 'RewardItemId1', 'RewardItemId2', 'RewardItemId3', 'RewardItemId4', 'RewardItemCount1', 'RewardItemCount2', 'RewardItemCount3', 'RewardItemCount4', 'RewardMoneyMaxLevel', 'RewardOrRequiredMoney', 'Type', 'ZoneOrSort', 'Flags');
 $quest_cols[3] = array('Title', 'Level', 'MinLevel', 'RequiredRaces', 'RewardChoiceItemId1', 'RewardChoiceItemId2', 'RewardChoiceItemId3', 'RewardChoiceItemId4', 'RewardChoiceItemId5', 'RewardChoiceItemId6', 'RewardChoiceItemCount1', 'RewardChoiceItemCount2', 'RewardChoiceItemCount3', 'RewardChoiceItemCount4', 'RewardChoiceItemCount5', 'RewardChoiceItemCount6', 'RewardItemId1', 'RewardItemId2', 'RewardItemId3', 'RewardItemId4', 'RewardItemCount1', 'RewardItemCount2', 'RewardItemCount3', 'RewardItemCount4', 'RewardMoneyMaxLevel', 'RewardOrRequiredMoney', 'Type', 'RequiredClasses', 'ZoneOrSort', 'Flags', 'RewardFactionValueId1', 'RewardFactionValueId2', 'RewardFactionValueId3', 'RewardFactionValueId4', 'RewardFactionValueId5', 'RewardFactionId1', 'RewardFactionId2', 'RewardFactionId3', 'RewardFactionId4', 'RewardFactionId5', 'RewardFactionValueId1', 'RewardFactionValueId2', 'RewardFactionValueId3', 'RewardFactionValueId4', 'RewardFactionValueId5', 'Objectives', 'Details', 'RequestItemsText', 'OfferRewardText', 'RequiredNpcOrGo1', 'RequiredNpcOrGo2', 'RequiredNpcOrGo3', 'RequiredNpcOrGo4', 'RequiredItemId1', 'RequiredItemId2', 'RequiredItemId3', 'RequiredItemId4', 'RequiredItemCount1', 'RequiredItemCount2', 'RequiredItemCount3', 'RequiredItemCount4', 'SourceItemId', 'RequiredNpcOrGoCount1', 'RequiredNpcOrGoCount2', 'RequiredNpcOrGoCount3', 'RequiredNpcOrGoCount4', 'ObjectiveText1', 'ObjectiveText2', 'ObjectiveText3', 'ObjectiveText4', 'EndText', 'PrevQuestID', 'NextQuestIdChain', 'ExclusiveGroup', 'NextQuestID', 'RewSpellCast', 'RewSpell', 'RequiredSkillPoints', 'RequiredFactionId1', 'RequiredFactionValue1', 'SuggestedPlayers', 'LimitTime', 'Flags', 'SpecialFlags', 'RewardTitleId', 'RequiredMinRepFaction', 'RequiredMinRepValue', 'RequiredMaxRepFaction', 'RequiredMaxRepValue', 'SourceSpellId', 'RequiredSkillId', 'RequiredSpellCast1', 'RequiredSpellCast2', 'RequiredSpellCast3', 'RequiredSpellCast4');
 
 function QuestReplaceStr($str)
@@ -341,7 +341,7 @@ function GetQuestDBLocale($quest)
 				ObjectiveText3_loc?d AS ObjectiveText3_loc,
 				ObjectiveText4_loc?d AS ObjectiveText4_loc
 			FROM locales_quest
-			WHERE entry = ?d
+			WHERE Id = ?d
 			LIMIT 1
 		',
 		$loc, $loc, $loc, $loc, $loc, $loc, $loc, $loc, $loc, $loc,
@@ -391,28 +391,6 @@ function GetDBQuestInfo($id, $dataflag = QUEST_DATAFLAG_MINIMUM)
 function GetQuestInfo(&$data, $dataflag = QUEST_DATAFLAG_MINIMUM)
 {
 	global $DB, $quest_class, $quest_faction_reward;
-	/*else
-	{
-		$data = $DB->selectRow('
-				SELECT
-					1
-					{, ?# } {, ?# } {, ?# } {, ?# } {, ?# }
-				FROM v_quest_template
-				WHERE entry=?d
-				LIMIT 1
-			',
-			($dataflag & QUEST_DATAFLAG_MINIMUM)?$questcols[QUEST_DATAFLAG_MINIMUM]:DBSIMPLE_SKIP,
-			($dataflag & QUEST_DATAFLAG_STRINGS)?$questcols[QUEST_DATAFLAG_STRINGS]:DBSIMPLE_SKIP,
-			($dataflag & QUEST_DATAFLAG_SERIES) ?$questcols[QUEST_DATAFLAG_SERIES] :DBSIMPLE_SKIP,
-			($dataflag & QUEST_DATAFLAG_PROPS)  ?$questcols[QUEST_DATAFLAG_PROPS]  :DBSIMPLE_SKIP,
-			($dataflag & QUEST_DATAFLAG_REWARDS)?$questcols[QUEST_DATAFLAG_REWARDS]:DBSIMPLE_SKIP,
-			$data['entry']
-		);
-	}
-	if(!$data)
-	{
-		return false;
-	}*/
 
 	// Локализация
 	if($dataflag & QUEST_DATAFLAG_LOCALE && $_SESSION['locale'] > 0)
@@ -431,7 +409,7 @@ function GetQuestInfo(&$data, $dataflag = QUEST_DATAFLAG_MINIMUM)
 					ObjectiveText3_loc?d AS ObjectiveText3_loc,
 					ObjectiveText4_loc?d AS ObjectiveText4_loc
 				FROM locales_quest
-				WHERE entry = ?d
+				WHERE Id = ?d
 				LIMIT 1
 			',
 			$loc, $loc, $loc, $loc, $loc, $loc, $loc, $loc, $loc, $loc,
@@ -443,7 +421,7 @@ function GetQuestInfo(&$data, $dataflag = QUEST_DATAFLAG_MINIMUM)
 	}
 	// Минимальные данные
 	// ID квеста
-	$data['entry'] = $data['entry'];
+	$data['Id'] = $data['Id'];
 	// Имя квеста
 	$data['Title'] = GetQuestTitle($data);
 

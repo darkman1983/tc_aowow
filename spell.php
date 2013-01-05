@@ -502,7 +502,7 @@ if(!$spell = load_cache(SPELL_PAGE, $cache_key))
 
 		// Спелл - награда за квест
 		$questreward = $DB->select('
-			SELECT c.?#
+			SELECT c.entry
 			{ , Title_loc?d AS Title_loc }
 			FROM v_quest_template c
 			{ LEFT JOIN (locales_quest l) ON c.entry = l.entry AND ? }
@@ -510,7 +510,6 @@ if(!$spell = load_cache(SPELL_PAGE, $cache_key))
 				RewardSpell = ?d
 				OR RewardSpellCast = ?d
 			',
-			$quest_cols[2],
 			($_SESSION['locale']>0)? $_SESSION['locale']: DBSIMPLE_SKIP,
 			($_SESSION['locale']>0)? 1: DBSIMPLE_SKIP,
 			$spell['entry'], $spell['entry']
