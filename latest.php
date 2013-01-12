@@ -34,7 +34,7 @@ switch($_GET['latest'])
 					$comments[$i]['subject'] = $DB->selectCell('SELECT name_loc'.$_SESSION['locale'].' FROM ?_itemset WHERE itemsetID=?d LIMIT 1', $row['typeID']);
 					break;
 				case 5: // Quest
-					$comments[$i]['subject'] = $DB->selectCell('SELECT Title_loc'.$_SESSION['locale'].' FROM locales_quest WHERE entry=?d LIMIT 1', $row['typeID']);
+					$comments[$i]['subject'] = $DB->selectCell('SELECT Title_loc'.$_SESSION['locale'].' FROM locales_quest WHERE Id=?d LIMIT 1', $row['typeID']);
 					break;
 				case 6: // Spell
 					$comments[$i]['subject'] = $DB->selectCell('SELECT spellname_loc'.$_SESSION['locale'].' FROM ?_spell WHERE spellID=?d LIMIT 1', $row['typeID']);
