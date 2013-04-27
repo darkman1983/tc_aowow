@@ -258,7 +258,7 @@ function aE(b, c, a) {
 		b.addEventListener(c, a, false)
 	}
 }
-function dE(b, c, a) {
+function dE_(b, c, a) {
 	if (Browser.ie) {
 		b.detachEvent("on" + c, a)
 	} else {
@@ -548,8 +548,8 @@ function g_enableScroll(a) {
 		aE(document, "mousewheel", g_enableScroll.F);
 		aE(window, "DOMMouseScroll", g_enableScroll.F)
 	} else {
-		dE(document, "mousewheel", g_enableScroll.F);
-		dE(window, "DOMMouseScroll", g_enableScroll.F)
+		dE_(document, "mousewheel", g_enableScroll.F);
+		dE_(window, "DOMMouseScroll", g_enableScroll.F)
 	}
 }
 g_enableScroll.F = function (a) {
