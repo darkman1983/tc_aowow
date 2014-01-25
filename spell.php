@@ -340,7 +340,6 @@ if(!$spell = load_cache(SPELL_PAGE, $cache_key))
 		if($taughtbyspells)
 		{
 			// Список петов, кастующих спелл, обучающий нужному спеллу
-			/*
 			$taughtbypets = $DB->select('
 				SELECT ?#, c.entry
 				{ , name_loc?d AS name_loc, subname_loc'.$_SESSION['locale'].' AS subname_loc }
@@ -362,7 +361,6 @@ if(!$spell = load_cache(SPELL_PAGE, $cache_key))
 					$spell['taughtbynpc'][] = creatureinfo2($petrow);
 				unset($taughtbypets);
 			}
-			*/
 
 			// Список квестов, наградой за которые является спелл, обучающий нужному спеллу
 			$taughtbyquest = $DB->select('

@@ -7,7 +7,7 @@ require_once('includes/allcomments.php');
 require_once('includes/allachievements.php');
 require_once('includes/allevents.php');
 
-// Настраиваем Smarty ;)
+// Ð�Ð°Ñ�Ñ‚Ñ€Ð°Ð¸Ð²Ð°ÐµÐ¼ Smarty ;)
 $smarty->config_load($conf_file, 'npc');
 
 $id = intval($podrazdel);
@@ -18,7 +18,7 @@ if(!$npc = load_cache(NPC_PAGE, $cache_key))
 {
 	unset($npc);
 
-	// Ищем NPC:
+	// Ð˜Ñ‰ÐµÐ¼ NPC:
 	$npc = array();
 	$row = $DB->selectRow('
 		SELECT
@@ -67,7 +67,7 @@ if(!$npc = load_cache(NPC_PAGE, $cache_key))
 		$npc['maxdmg'] = round(($row['maxdmg'] + $row['attackpower']) * $row['dmg_multiplier']);
 		
 		$toDiv = array('minhealth', 'maxmana', 'minmana', 'maxhealth', 'armor', 'mindmg', 'maxdmg');
-		// Разделяем на тысячи (ххххххххх => ххх,ххх,ххх)
+		// Ð Ð°Ð·Ð´ÐµÐ»Ñ�ÐµÐ¼ Ð½Ð° Ñ‚Ñ‹Ñ�Ñ�Ñ‡Ð¸ (Ñ…Ñ…Ñ…Ñ…Ñ…Ñ…Ñ…Ñ…Ñ… => Ñ…Ñ…Ñ…,Ñ…Ñ…Ñ…,Ñ…Ñ…Ñ…)
 		foreach($toDiv as $e)
 			$npc[$e] = number_format($npc[$e]);
 
@@ -75,13 +75,13 @@ if(!$npc = load_cache(NPC_PAGE, $cache_key))
 		// faction_A = faction_H
 		$npc['faction_num'] = $row['factionID'];
 		$npc['faction'] = $row['faction-name'];
-		// Деньги
+		// Ð”ÐµÐ½ÑŒÐ³Ð¸
 		$money = ($row['mingold']+$row['maxgold']) / 2;
 		$npc = @array_merge($npc, money2coins($money));
-		// Героик/нормал копия НПС
+		// Ð“ÐµÑ€Ð¾Ð¸Ðº/Ð½Ð¾Ñ€Ð¼Ð°Ð» ÐºÐ¾Ð¿Ð¸Ñ� Ð�ÐŸÐ¡
 		if($npc['difficulty_entry_1'])
 		{
-			// это нормал НПС, ищем героика
+			// Ñ�Ñ‚Ð¾ Ð½Ð¾Ñ€Ð¼Ð°Ð» Ð�ÐŸÐ¡, Ð¸Ñ‰ÐµÐ¼ Ð³ÐµÑ€Ð¾Ð¸ÐºÐ°
 			if($tmp = creatureinfo($npc['difficulty_entry_1']))
 			{
 				$npc['heroic'] = array(
@@ -95,8 +95,8 @@ if(!$npc = load_cache(NPC_PAGE, $cache_key))
 		}
 		else
 		{
-			// А может быть героик НПС одним для нескольких нормалов?
-			// считаем что нет
+			// Ð� Ð¼Ð¾Ð¶ÐµÑ‚ Ð±Ñ‹Ñ‚ÑŒ Ð³ÐµÑ€Ð¾Ð¸Ðº Ð�ÐŸÐ¡ Ð¾Ð´Ð½Ð¸Ð¼ Ð´Ð»Ñ� Ð½ÐµÑ�ÐºÐ¾Ð»ÑŒÐºÐ¸Ñ… Ð½Ð¾Ñ€Ð¼Ð°Ð»Ð¾Ð²?
+			// Ñ�Ñ‡Ð¸Ñ‚Ð°ÐµÐ¼ Ñ‡Ñ‚Ð¾ Ð½ÐµÑ‚
 			$tmp = $DB->selectRow('
 					SELECT c.entry, c.name
 					{
@@ -127,11 +127,11 @@ if(!$npc = load_cache(NPC_PAGE, $cache_key))
 				unset($tmp);
 			}
 		}
-		// Дроп
+		// Ð”Ñ€Ð¾Ð¿
 		$lootid=$row['lootid'];
 		$skinid=$row['skinloot'];
 		$pickpocketid=$row['pickpocketloot'];
-		// Используемые спеллы
+		// Ð˜Ñ�Ð¿Ð¾Ð»ÑŒÐ·ÑƒÐµÐ¼Ñ‹Ðµ Ñ�Ð¿ÐµÐ»Ð»Ñ‹
 		$npc['ablities'] = array();
 		$tmp = array();
 		for($j=0;$j<=4;++$j)
@@ -174,9 +174,9 @@ if(!$npc = load_cache(NPC_PAGE, $cache_key))
 		if(!$npc['ablities'])
 			unset($npc['ablities']);
 
-		// Обучает:
-		// Если это пет со способностью:
-		/* // Временно закомментировано
+		// ÐžÐ±ÑƒÑ‡Ð°ÐµÑ‚:
+		// Ð•Ñ�Ð»Ð¸ Ñ�Ñ‚Ð¾ Ð¿ÐµÑ‚ Ñ�Ð¾ Ñ�Ð¿Ð¾Ñ�Ð¾Ð±Ð½Ð¾Ñ�Ñ‚ÑŒÑŽ:
+		// Ð’Ñ€ÐµÐ¼ÐµÐ½Ð½Ð¾ Ð·Ð°ÐºÐ¾Ð¼Ð¼ÐµÐ½Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¾
 		$row = $DB->selectRow('
 			SELECT Spell1, Spell2, Spell3, Spell4
 			FROM petcreateinfo_spell
@@ -211,9 +211,9 @@ if(!$npc = load_cache(NPC_PAGE, $cache_key))
 						}
 					}
 		}
-		unset ($row);*/
+		unset ($row);
 
-		// Если это просто тренер
+		// Ð•Ñ�Ð»Ð¸ Ñ�Ñ‚Ð¾ Ð¿Ñ€Ð¾Ñ�Ñ‚Ð¾ Ñ‚Ñ€ÐµÐ½ÐµÑ€
 		$teachspells = $DB->select('
 			SELECT ?#, spellID
 			FROM npc_trainer, ?_spell, ?_spellicons
@@ -242,7 +242,7 @@ if(!$npc = load_cache(NPC_PAGE, $cache_key))
 		}
 		unset ($teachspells);
 
-		// Продает:
+		// ÐŸÑ€Ð¾Ð´Ð°ÐµÑ‚:
 		$rows_s = $DB->select('
 			SELECT ?#, i.entry, i.maxcount, n.`maxcount` as `drop-maxcount`, n.ExtendedCost
 				{, l.name_loc?d AS `name_loc`}
@@ -291,19 +291,19 @@ if(!$npc = load_cache(NPC_PAGE, $cache_key))
 		}
 		unset ($rows_s);
 
-		// Дроп
+		// Ð”Ñ€Ð¾Ð¿
 		if(!($npc['drop'] = loot('creature_loot_template', $lootid)))
 			unset ($npc['drop']);
 
-		// Кожа
+		// ÐšÐ¾Ð¶Ð°
 		if(!($npc['skinning'] = loot('skinning_loot_template', $skinid)))
 			unset ($npc['skinning']);
 
-		// Воруеццо
+		// Ð’Ð¾Ñ€ÑƒÐµÑ†Ñ†Ð¾
 		if(!($npc['pickpocketing'] = loot('pickpocketing_loot_template', $pickpocketid)))
 			unset ($npc['pickpocketing']);
 
-		// Начиниают квесты...
+		// Ð�Ð°Ñ‡Ð¸Ð½Ð¸Ð°ÑŽÑ‚ ÐºÐ²ÐµÑ�Ñ‚Ñ‹...
 		$rows_qs = $DB->select('
 			SELECT ?#
 			FROM creature_questrelation c, v_quest_template q
@@ -323,7 +323,7 @@ if(!$npc = load_cache(NPC_PAGE, $cache_key))
 		}
 		unset ($rows_qs);
 
-		// Начиниают event-only квесты...
+		// Ð�Ð°Ñ‡Ð¸Ð½Ð¸Ð°ÑŽÑ‚ event-only ÐºÐ²ÐµÑ�Ñ‚Ñ‹...
 		$rows_qse = event_find(array('quest_creature_id' => $id));
 		if($rows_qse)
 		{
@@ -335,7 +335,7 @@ if(!$npc = load_cache(NPC_PAGE, $cache_key))
 		}
 		unset ($rows_qse);
 
-		// Заканчивают квесты...
+		// Ð—Ð°ÐºÐ°Ð½Ñ‡Ð¸Ð²Ð°ÑŽÑ‚ ÐºÐ²ÐµÑ�Ñ‚Ñ‹...
 		$rows_qe = $DB->select('
 			SELECT ?#
 			FROM creature_involvedrelation c, v_quest_template q
@@ -355,7 +355,7 @@ if(!$npc = load_cache(NPC_PAGE, $cache_key))
 		}
 		unset ($rows_qe);
 
-		// Необходимы для квеста..
+		// Ð�ÐµÐ¾Ð±Ñ…Ð¾Ð´Ð¸Ð¼Ñ‹ Ð´Ð»Ñ� ÐºÐ²ÐµÑ�Ñ‚Ð°..
 		$rows_qo = $DB->select('
 			SELECT ?#
 			FROM v_quest_template
@@ -376,7 +376,7 @@ if(!$npc = load_cache(NPC_PAGE, $cache_key))
 		}
 		unset ($rows_qo);
 
-		// Цель критерии
+		// Ð¦ÐµÐ»ÑŒ ÐºÑ€Ð¸Ñ‚ÐµÑ€Ð¸Ð¸
 		$rows = $DB->select('
 				SELECT a.id, a.faction, a.name_loc?d AS name, a.description_loc?d AS description, a.category, a.points, s.iconname, z.areatableID
 				FROM ?_spellicons s, ?_achievementcriteria c, ?_achievement a
@@ -405,15 +405,15 @@ if(!$npc = load_cache(NPC_PAGE, $cache_key))
 			}
 		}
 
-		// Положения созданий божих (для героик НПС не задана карта, юзаем из нормала):
+		// ÐŸÐ¾Ð»Ð¾Ð¶ÐµÐ½Ð¸Ñ� Ñ�Ð¾Ð·Ð´Ð°Ð½Ð¸Ð¹ Ð±Ð¾Ð¶Ð¸Ñ… (Ð´Ð»Ñ� Ð³ÐµÑ€Ð¾Ð¸Ðº Ð�ÐŸÐ¡ Ð½Ðµ Ð·Ð°Ð´Ð°Ð½Ð° ÐºÐ°Ñ€Ñ‚Ð°, ÑŽÐ·Ð°ÐµÐ¼ Ð¸Ð· Ð½Ð¾Ñ€Ð¼Ð°Ð»Ð°):
 		if($normal_entry)
-			// мы - героик НПС, определяем позицию по нормалу
+			// Ð¼Ñ‹ - Ð³ÐµÑ€Ð¾Ð¸Ðº Ð�ÐŸÐ¡, Ð¾Ð¿Ñ€ÐµÐ´ÐµÐ»Ñ�ÐµÐ¼ Ð¿Ð¾Ð·Ð¸Ñ†Ð¸ÑŽ Ð¿Ð¾ Ð½Ð¾Ñ€Ð¼Ð°Ð»Ñƒ
 			$npc['position'] = position($normal_entry, 'creature', 2);
 		else
-			// мы - нормал НПС или НПС без сложности
+			// Ð¼Ñ‹ - Ð½Ð¾Ñ€Ð¼Ð°Ð» Ð�ÐŸÐ¡ Ð¸Ð»Ð¸ Ð�ÐŸÐ¡ Ð±ÐµÐ· Ñ�Ð»Ð¾Ð¶Ð½Ð¾Ñ�Ñ‚Ð¸
 			$npc['position'] = position($npc['entry'], 'creature', 1);
 
-		// Исправить type, чтобы подсвечивались event-овые NPC
+		// Ð˜Ñ�Ð¿Ñ€Ð°Ð²Ð¸Ñ‚ÑŒ type, Ñ‡Ñ‚Ð¾Ð±Ñ‹ Ð¿Ð¾Ð´Ñ�Ð²ÐµÑ‡Ð¸Ð²Ð°Ð»Ð¸Ñ�ÑŒ event-Ð¾Ð²Ñ‹Ðµ NPC
 		if ($npc['position'])
 			foreach ($npc['position'] as $z => $zone)
 				foreach ($zone['points'] as $p => $pos)
@@ -441,15 +441,15 @@ $page = array(
 
 $smarty->assign('page', $page);
 
-// Комментарии
+// ÐšÐ¾Ð¼Ð¼ÐµÐ½Ñ‚Ð°Ñ€Ð¸Ð¸
 $smarty->assign('comments', getcomments($page['type'], $page['typeid']));
 
 $smarty->assign('npc', $npc);
 
-// Количество MySQL запросов
+// ÐšÐ¾Ð»Ð¸Ñ‡ÐµÑ�Ñ‚Ð²Ð¾ MySQL Ð·Ð°Ð¿Ñ€Ð¾Ñ�Ð¾Ð²
 $smarty->assign('mysql', $DB->getStatistics());
 
-// Запускаем шаблонизатор
+// Ð—Ð°Ð¿ÑƒÑ�ÐºÐ°ÐµÐ¼ ÑˆÐ°Ð±Ð»Ð¾Ð½Ð¸Ð·Ð°Ñ‚Ð¾Ñ€
 $smarty->display('npc.tpl');
 
 ?>
