@@ -306,7 +306,7 @@ if(!$npc = load_cache(NPC_PAGE, $cache_key))
 		// Ð�Ð°Ñ‡Ð¸Ð½Ð¸Ð°ÑŽÑ‚ ÐºÐ²ÐµÑ�Ñ‚Ñ‹...
 		$rows_qs = $DB->select('
 			SELECT ?#
-			FROM creature_questrelation c, v_quest_template q
+			FROM creature_queststarter c, v_quest_template q
 			WHERE
 				c.id=?
 				AND q.entry=c.quest
@@ -338,7 +338,7 @@ if(!$npc = load_cache(NPC_PAGE, $cache_key))
 		// Ð—Ð°ÐºÐ°Ð½Ñ‡Ð¸Ð²Ð°ÑŽÑ‚ ÐºÐ²ÐµÑ�Ñ‚Ñ‹...
 		$rows_qe = $DB->select('
 			SELECT ?#
-			FROM creature_involvedrelation c, v_quest_template q
+			FROM creature_queststarter c, v_quest_template q
 			WHERE
 				c.id=?
 				AND q.entry=c.quest
