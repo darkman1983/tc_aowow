@@ -14,7 +14,7 @@ if(!$data = load_cache(OBJECT_LISTING, $cache_key))
 	$rows = $DB->select("
 			SELECT g.* {, a.requiredskill1 as ?#} {, a.requiredskill2 as ?#}
 				{, l.name_loc?d AS `name_loc`}
-			FROM {gameobject_questrelation ?#, } {?_lock ?#, } gameobject_template g
+			FROM {gameobject_queststarter ?# LEFT JOIN gameobject_questender qe ON qs.id = qe.id, } {?_lock ?#, } gameobject_template g
 				{LEFT JOIN (locales_gameobject l) ON l.entry=g.entry AND ?d}
 			WHERE 
 				g.name <> ''
@@ -24,14 +24,14 @@ if(!$data = load_cache(OBJECT_LISTING, $cache_key))
 				{ AND a.lockproperties1=2 AND 1=?}
 				{ AND a.lockproperties1=3 AND 1=?}
 				{ AND a.lockproperties2=1 AND 1=?}
-				{ AND g.entry = q.?#}
+				{ AND g.entry = qs.?#}
 			ORDER by name
 			{LIMIT ?d}
 		",
 		in_array($type, array(-3, -4)) ? 'skill' : DBSIMPLE_SKIP,
 		$type == -5 ? 'skill' : DBSIMPLE_SKIP,
 		$_SESSION['locale'] > 0 ? $_SESSION['locale'] : DBSIMPLE_SKIP,
-		$type == -2 ? 'q': DBSIMPLE_SKIP,
+		$type == -2 ? 'qs': DBSIMPLE_SKIP,
 		in_array($type, array(-3, -4, -5)) ? 'a' : DBSIMPLE_SKIP,
 		$_SESSION['locale'] > 0 ? 1: DBSIMPLE_SKIP,
 		$type > 0 ? $type : DBSIMPLE_SKIP,

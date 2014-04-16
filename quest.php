@@ -379,7 +379,7 @@ if(!$quest = load_cache(QUEST_PAGE, $cache_key))
 	$rows = $DB->select('
 		SELECT c.entry, c.name, A, H
 			{, l.name_loc?d AS name_loc}
-		FROM creature_questrelation q, ?_factiontemplate, creature_template c
+		FROM creature_queststarter q, ?_factiontemplate, creature_template c
 			{LEFT JOIN (locales_creature l) ON l.entry=c.entry AND ?}
 		WHERE
 			q.quest=?d
@@ -428,7 +428,7 @@ if(!$quest = load_cache(QUEST_PAGE, $cache_key))
 	$rows = $DB->select('
 		SELECT g.entry, g.name
 			{, l.name_loc?d AS name_loc}
-		FROM gameobject_questrelation q, gameobject_template g
+		FROM gameobject_queststarter q, gameobject_template g
 			{LEFT JOIN (locales_gameobject l) ON l.entry = g.entry AND ?}
 		WHERE
 			q.quest=?d
@@ -477,7 +477,7 @@ if(!$quest = load_cache(QUEST_PAGE, $cache_key))
 	$rows = $DB->select('
 		SELECT c.entry, c.name, A, H
 			{, l.name_loc?d AS name_loc}
-		FROM creature_involvedrelation q, ?_factiontemplate, creature_template c
+		FROM creature_questender q, ?_factiontemplate, creature_template c
 			{LEFT JOIN (locales_creature l) ON l.entry=c.entry AND ?}
 		WHERE
 			q.quest=?d
@@ -506,7 +506,7 @@ if(!$quest = load_cache(QUEST_PAGE, $cache_key))
 	$rows = $DB->select('
 		SELECT g.entry, g.name
 			{, l.name_loc?d AS name_loc}
-		FROM gameobject_involvedrelation q, gameobject_template g
+		FROM gameobject_questender q, gameobject_template g
 			{LEFT JOIN (locales_gameobject l) ON l.entry = g.entry AND ?}
 		WHERE
 			q.quest=?d
